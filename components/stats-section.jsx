@@ -11,21 +11,18 @@ const stats = [
     value: 500,
     suffix: "K+",
     label: "Managed",
-    color: "from-green-500 to-emerald-600",
   },
   {
     icon: TrendingUp,
     value: 2,
     suffix: "M+",
     label: "Generated",
-    color: "from-blue-500 to-cyan-600",
   },
   {
     icon: Users,
     value: 12,
     suffix: "+",
     label: "Businesses Helped",
-    color: "from-purple-500 to-pink-600",
   },
 ]
 
@@ -61,90 +58,64 @@ function AnimatedCounter({ value, suffix }) {
 
 export default function StatsSection() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
-      {/* Background Glow */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"
-        />
-        <div
-          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-l from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl"
-        />
-      </div>
-
+    <section className="py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 relative bg-black">
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <motion.h2
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4"
           >
-            Our{" "}
-            <motion.span
-              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-              className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent bg-[length:200%_auto]"
-            >
-              Proven Results
-            </motion.span>
+            Our Proven Results
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl text-white/70 max-w-4xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed px-4"
           >
             See how we've transformed campaigns from struggling to scaling by implementing our proprietary systems and
             data-driven strategies.
           </motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {stats.map((stat, index) => {
             const Icon = stat.icon
             return (
               <motion.div
                 key={index}
-
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group"
               >
-                <Card className="bg-white/5 backdrop-blur-md border-white/10 hover:border-white/20 transition-all duration-500 group relative overflow-hidden h-full">
-                  <CardContent className="p-8 text-center relative z-10">
-                    <motion.div
-                      className={`w-20 h-20 rounded-2xl bg-gradient-to-r ${stat.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <Icon className="w-10 h-10 text-white" />
-                    </motion.div>
+                <div className="relative h-full">
+                  {/* Minimal card with subtle border */}
+                  <div className="bg-black border border-gray-800 hover:border-gray-700 transition-all duration-300 h-full p-8 sm:p-10 flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4">
+                    
+                    {/* Simple icon */}
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
+                      <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                    </div>
 
-                    <div
-                      className="text-4xl md:text-5xl font-bold text-white mb-2"
-
-                    >
+                    {/* Large number */}
+                    <div className="text-4xl sm:text-5xl md:text-6xl font-light text-white tracking-tight">
                       <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                     </div>
 
-                    <motion.div
-                      className="text-lg text-white/70 font-medium"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.4 }}
-                    >
+                    {/* Label */}
+                    <div className="text-xs sm:text-sm text-gray-500 font-normal tracking-wide uppercase">
                       {stat.label}
-                    </motion.div>
-
-                    <motion.div
-                      className={`h-1 bg-gradient-to-r ${stat.color} mx-auto mt-4 rounded-full`}
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "60%" }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
-                    />
-                  </CardContent>
-                </Card>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             )
           })}

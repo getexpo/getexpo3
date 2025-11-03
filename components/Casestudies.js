@@ -74,14 +74,14 @@ export default function CaseStudies() {
       <div className="container mx-auto relative z-10">
         {/* Enhanced Header Section */}
         <div className="text-center mb-16 sm:mb-20 md:mb-24 lg:mb-32 space-y-4 sm:space-y-6 md:space-y-8 px-2">
-          <h2 className="text-4xl sm:text-5xl md:text-[5rem] lg:text-[7rem] xl:text-[9vw] font-poppins font-bold text-white tracking-tight leading-none">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-poppins font-bold text-white tracking-tight leading-none">
             Real World
             <br />
             <span className="text-gray-400 font-normal">
               Success Stories
             </span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-2xl xl:text-[1.6vw] font-normal text-gray-400 max-w-3xl mx-auto leading-relaxed font-roboto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-normal text-gray-400 max-w-3xl mx-auto leading-relaxed font-roboto">
             Proven strategies that delivered measurable results for businesses like yours.
           </p>
         </div>

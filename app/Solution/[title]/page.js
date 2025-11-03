@@ -7,7 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import SplitType from 'split-type';
 // import PricingSection from "@/components/pricing-section"
-// import StatsSection from '@/components/stats-section'
+import StatsSection from '../../../components/stats-section'
 // import ServicesSection from "@/components/services-section"
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 import { MoveRight } from 'lucide-react';
 import Casestudies from '../../../components/Casestudies';
 import Navbar from '@/components/Navbar'
+import Contact from '../../../components/Contact'
 const FullData = {
     page_2_3: [
         {
@@ -419,13 +420,10 @@ const Page = () => {
                 </div>
             </div>
             <div>
-                {/* <StatsSection /> */}
+                <StatsSection />
             </div>
             <Casestudies />
-
-
-
-
+            <Contact />
 
         </>
 

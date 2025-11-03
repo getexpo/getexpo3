@@ -3,7 +3,9 @@ import { MoveRight } from 'lucide-react';
 import Position from '@/components/Position'
 import Type from "@/components/Type"
 import LogoMarquee from '@/components/LogoMarquee'
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar'
+import StatsSection from '@/components/stats-section'
+import Contact from '@/components/Contact'
 export default function HomePage() {
 
   const logos = [
@@ -168,6 +170,11 @@ export default function HomePage() {
 
           </div>
 
+          {/* Stats Section */}
+          <StatsSection />
+
+          {/* Contact Section */}
+          <Contact />
 
         </main>
       </div>
