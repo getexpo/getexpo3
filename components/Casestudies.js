@@ -2,67 +2,30 @@
 import { motion } from "framer-motion"
 import { ArrowUpRight, } from "lucide-react"
 import Link from 'next/link';
+import { useQuery } from '@tanstack/react-query'
 
 import Marquee from 'react-fast-marquee';
 
-const caseStudies = [
-  {
-    category: "Healthcare Education",
-    title: "Medical Education",
-    href:'/CaseStudy/case1',
-    description:
-      "Our client specializes in EKG interpretation training for nurse practitioners where accuracy can mean life or death. When ad fatigue hit and CPL skyrocketed, we pivoted to target problem-aware audiences with entirely new messaging frameworks.",
-    results: ["Reduced CPL by 65%", "Increased conversion rate by 180%", "Scaled to $50k/month"],
-  },
-  {
-    category: "Healthcare Business",
-    title: "MedSpa Business",
-    href:'/CaseStudy/case2',
-
-    description:
-      "Our client helps healthcare professionals transition to owning medspas. When they shifted from live to evergreen webinars, we systematically mapped pain points across awareness levels to maintain conversion rates without the urgency of live events.",
-    results: ["Maintained 4.2% conversion rate", "Reduced cost per lead by 40%", "Automated lead generation"],
-  },
-  {
-    category: "Healthcare Services",
-    title: "IV Hydration",
-    href:'/CaseStudy/case3',
-
-    description:
-      "Our client teaches healthcare professionals about IV therapies. We repositioned the entire offering from clinical procedure training to business opportunity development, creating differentiation in a crowded healthcare education market.",
-    results: ["Increased ROAS by 220%", "Expanded to 3 new markets", "Built $2M+ pipeline"],
-  },
-  {
-    category: "Health & Wellness",
-    title: "Supplements",
-    href:'/CaseStudy/case4',
-
-    description:
-      "Our client needed a systematic approach to launch multiple supplement products simultaneously. We developed a comprehensive ad testing framework across all awareness levels, prioritizing bioavailability as the primary USP.",
-    results: ["Launched 5 products successfully", "Achieved 3.8x ROAS average", "Built loyal customer base"],
-  },
-  {
-    category: "Business Networking",
-    title: "Internet Mastermind",
-    href:'/CaseStudy/case5',
-
-    description:
-      "Our client runs an exclusive CEO network in Vancouver but struggled to attract qualified leads. We implemented broad targeting with qualifying copy that outperformed conventional interest targeting, attracting higher-caliber executives.",
-    results: ["Increased lead quality by 300%", "Reduced cost per qualified lead by 55%", "Filled mastermind program"],
-  },
-  {
-    category: "Skincare",
-    href:'/CaseStudy/case1',
-
-    title: "Skinlycious",
-    description:
-      "Our client needed to differentiate in a crowded skincare market. We developed a comprehensive content strategy that positioned them as experts in acne treatment, resulting in significant improvements in conversion and customer acquisition.",
-    results: ["40% increase in conversion rate", "25% lower customer acquisition costs", "Built brand authority"],
-  },
-
-]
-
 export default function CaseStudies() {
+  // Fetch case studies from API
+  const { data: caseStudies } = useQuery({
+    queryKey: ['case-studies-public'],
+    queryFn: async () => {
+      const res = await fetch('/api/case-studies?published=true')
+      if (!res.ok) throw new Error('Failed to fetch')
+      return res.json()
+    },
+    placeholderData: [],
+  })
+
+  // Transform data to match expected format
+  const transformedStudies = caseStudies?.map(study => ({
+    category: study.category,
+    title: study.title,
+    href: `/CaseStudy/${study.slug}`,
+    description: study.description,
+    results: [study.result1, study.result2, study.result3],
+  })) || []
   return (
     <section id="case-studies" className="py-16 sm:py-24 md:py-32 lg:py-40 relative px-4 sm:px-6 lg:px-8">
       {/* Simplified background - minimal gradients */}
@@ -98,7 +61,7 @@ export default function CaseStudies() {
             pauseOnHover={true}
             gradient={false}
           >
-            {caseStudies.map((study, index) => (
+            {transformedStudies.map((study, index) => (
               <div
                 key={index}
                 className="mx-8 md:mx-12 lg:mx-16"

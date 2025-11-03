@@ -1,0 +1,196 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Admin authentication
+model Admin {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Home page hero section
+model HomeContent {
+  id                Int      @id @default(autoincrement())
+  heroTitle1        String   @default("Transform Your Ad Spend")
+  heroTitle2        String   @default("Into Real")
+  typedWords        String   @default("Customers,Revenue,Profit") // comma-separated
+  subHeadline       String   @default("And Bring The Growth You Deserve")
+  description       String   @default("We'll pinpoint where you are in your advertising journey and deliver customized solutions that maximize your ROI")
+  ctaText           String   @default("Work With Us")
+  ctaLink           String   @default("https://calendly.com/rohittangri/just-starting-out")
+  bigStat           String   @default("$600K")
+  statsText1        String   @default("Get Exposure has profitably spent over")
+  statsText2        String   @default("$600K in Ad spend")
+  statsText3        String   @default("and generated over $2.4M.")
+  journeyTitle1     String   @default("Where Are You in Your")
+  journeyTitle2     String   @default("Advertising Journey")
+  journeyDesc       String   @default("We start by pinpointing exactly where you are in your advertising journey. Every business is unique, and your challenges require tailored solutions.")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+// Position/Journey tabs (3 sections)
+model Position {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique // "rocket", "station", "parts"
+  title       String
+  subtitle    String
+  description String
+  calendlyLink String
+  displayOrder Int     @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Case studies
+model CaseStudy {
+  id          Int      @id @default(autoincrement())
+  category    String
+  title       String
+  slug        String   @unique
+  description String
+  result1     String
+  result2     String
+  result3     String
+  displayOrder Int     @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Solution pages (3 types with multiple steps each)
+model SolutionType {
+  id           Int      @id @default(autoincrement())
+  slug         String   @unique // "looking-to-scale", "looking-to-optimize", "just-starting"
+  title        String
+  description  String
+  videoUrl     String
+  calendlyLink String
+  steps        SolutionStep[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model SolutionStep {
+  id             Int          @id @default(autoincrement())
+  solutionTypeId Int
+  solutionType   SolutionType @relation(fields: [solutionTypeId], references: [id], onDelete: Cascade)
+  title          String
+  description    String
+  stepOrder      Int          @default(0)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+// Contact section
+model ContactInfo {
+  id        Int      @id @default(autoincrement())
+  type      String   // "info", "benefit", "stat"
+  icon      String?  // for contact info cards
+  title     String
+  details   String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Contact page content
+model ContactContent {
+  id              Int      @id @default(autoincrement())
+  mainTitle1      String   @default("Ready to Scale")
+  mainTitle2      String   @default("Your Advertising?")
+  mainDescription String   @default("Book a free consultation to discover how we can transform your ad campaigns into a profitable growth engine.")
+  benefitsTitle   String   @default("What You'll Get")
+  contactTitle    String   @default("Get in Touch")
+  trustBadge      String   @default("Join 50+ businesses who've scaled their advertising with our proven strategies")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Stats section
+model StatItem {
+  id        Int      @id @default(autoincrement())
+  value     String   // "500", "2", "12"
+  suffix    String   // "K+", "M+", "+"
+  label     String   // "Managed", "Generated", "Businesses Helped"
+  icon      String   @default("DollarSign") // Icon name
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model StatsContent {
+  id          Int      @id @default(autoincrement())
+  title       String   @default("Our Proven Results")
+  description String   @default("See how we've transformed campaigns from struggling to scaling by implementing our proprietary systems and data-driven strategies.")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Brand logos for marquee
+model LogoImage {
+  id        Int      @id @default(autoincrement())
+  filename  String
+  path      String   @unique
+  alt       String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// General uploaded images
+model GeneralImage {
+  id        Int      @id @default(autoincrement())
+  filename  String
+  path      String   @unique
+  alt       String?
+  size      Int      // in bytes
+  mimeType  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Site settings
+model Settings {
+  id                 Int      @id @default(autoincrement())
+  siteName           String   @default("Get Exposure")
+  siteDescription    String   @default("Transform Your Ad Spend Into Real Results")
+  defaultCalendlyLink String  @default("https://calendly.com/rohittangri/just-starting-out")
+  email              String   @default("team@getexposure.ca")
+  phone              String   @default("+1 778 712 3301")
+  location           String   @default("Vancouver, BC, Canada")
+  businessHours      String   @default("Mon-Fri: 9AM-6PM PST")
+  googleAnalyticsId  String?
+  facebookPixelId    String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+// Case study content pages
+model CaseStudyContent {
+  id          Int      @id @default(autoincrement())
+  caseSlug    String   @unique // "case1", "case2", etc.
+  title       String
+  category    String
+  client      String?
+  challenge   String
+  solution    String
+  results     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

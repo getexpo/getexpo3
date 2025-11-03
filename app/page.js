@@ -1,23 +1,65 @@
 'use client'
 import { MoveRight } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query'
 import Position from '@/components/Position'
 import Type from "@/components/Type"
 import LogoMarquee from '@/components/LogoMarquee'
 import Navbar from '@/components/Navbar'
 import StatsSection from '@/components/stats-section'
 import Contact from '@/components/Contact'
-export default function HomePage() {
+import QueryProvider from '@/components/admin/QueryProvider'
 
-  const logos = [
-    '/brands/1.png',
-    '/brands/2.png',
-    '/brands/3.png',
-    '/brands/4.png',
-    '/brands/5.png',
-    '/brands/6.png',
-    '/brands/7.png',
-    '/brands/8.png'
-  ]
+function HomePageContent() {
+  // Fetch home content from API
+  const { data: content } = useQuery({
+    queryKey: ['home-content'],
+    queryFn: async () => {
+      const res = await fetch('/api/home')
+      if (!res.ok) throw new Error('Failed to fetch')
+      return res.json()
+    },
+    // Use default values while loading
+    placeholderData: {
+      heroTitle1: 'Transform Your Ad Spend',
+      heroTitle2: 'Into Real',
+      typedWords: 'Customers,Revenue,Profit',
+      subHeadline: 'And Bring The Growth You Deserve',
+      description: "We'll pinpoint where you are in your advertising journey and deliver customized solutions that maximize your ROI",
+      ctaText: 'Work With Us',
+      ctaLink: 'https://calendly.com/rohittangri/just-starting-out',
+      bigStat: '$600K',
+      statsText1: 'Get Exposure has profitably spent over',
+      statsText2: '$600K in Ad spend',
+      statsText3: 'and generated over $2.4M.',
+      journeyTitle1: 'Where Are You in Your',
+      journeyTitle2: 'Advertising Journey',
+      journeyDesc: 'We start by pinpointing exactly where you are in your advertising journey. Every business is unique, and your challenges require tailored solutions.',
+    },
+  })
+
+  // Fetch logos from API
+  const { data: logos } = useQuery({
+    queryKey: ['logos'],
+    queryFn: async () => {
+      const res = await fetch('/api/logos')
+      if (!res.ok) throw new Error('Failed to fetch')
+      return res.json()
+    },
+    select: (data) => data.map(logo => logo.path),
+    placeholderData: [
+      {path: '/brands/1.png'},
+      {path: '/brands/2.png'},
+      {path: '/brands/3.png'},
+      {path: '/brands/4.png'},
+      {path: '/brands/5.png'},
+      {path: '/brands/6.png'},
+      {path: '/brands/7.png'},
+      {path: '/brands/8.png'},
+    ],
+  })
+
+  const typedWords = content?.typedWords?.split(',') || ['Customers', 'Revenue', 'Profit']
+  
   return (
     <>
       <Navbar action={'#journey'} target={'_self'} />
@@ -51,14 +93,14 @@ export default function HomePage() {
               <div className="space-y-4 md:space-y-6 px-4 md:px-0 max-w-7xl mx-auto mb-8">
                 <div className="space-y-2 md:space-y-3 flex items-center justify-center flex-col">
                   <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl max-w-5xl text-center font-poppins leading-tight">
-                    {/* First line: Transform Your Ad Spend */}
+                    {/* First line */}
                     <span className="block text-white font-semibold">
-                      Transform Your Ad Spend
+                      {content?.heroTitle1}
                     </span>
                     
-                    {/* Second line: Into Real [Dynamic Word] */}
+                    {/* Second line with dynamic words */}
                     <span className="flex flex-row items-center gap-2 md:gap-3 justify-center mt-1 md:mt-2">
-                      <span className="font-semibold text-white">Into Real</span>
+                      <span className="font-semibold text-white">{content?.heroTitle2}</span>
                       <span
                         className="font-semibold"
                         style={{
@@ -69,7 +111,7 @@ export default function HomePage() {
                           color: 'transparent',
                         }}
                       >
-                        <Type data={['Customers', 'Revenue', 'Profit']} loop={true} speed={100} delay={100} style="" />
+                        <Type data={typedWords} loop={true} speed={100} delay={100} style="" />
                       </span>
                     </span>
                   </h1>
@@ -77,15 +119,15 @@ export default function HomePage() {
 
                 {/* Sub-headline with improved spacing */}
                 <h2 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl max-w-4xl mx-auto font-poppins text-center text-white/95 font-normal leading-relaxed px-2">
-                  And Bring The Growth You Deserve
+                  {content?.subHeadline}
                 </h2>
                 <p className="text-sm sm:text-base md:text-base lg:text-lg xl:text-lg font-normal tracking-wide leading-relaxed text-center w-[95%] md:w-[85%] lg:w-[70%] max-w-3xl mx-auto text-white/75 font-roboto px-2">
-                  We&apos;ll pinpoint where you are in your advertising journey and deliver customized solutions that maximize your ROI
+                  {content?.description}
                 </p>
 
                 <div className="w-full flex item-center justify-center pt-3 md:pt-4 px-4 pb-4">
-                  <a href='https://calendly.com/rohittangri/just-starting-out' target='_blank' className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-3.5 md:px-10 md:py-4 bg-white hover:bg-gray-200 text-black font-medium text-sm sm:text-base md:text-base lg:text-lg transition-all duration-300 overflow-hidden">
-                    <span className="relative z-10">Work With Us</span>
+                  <a href={content?.ctaLink} target='_blank' className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-3.5 md:px-10 md:py-4 bg-white hover:bg-gray-200 text-black font-medium text-sm sm:text-base md:text-base lg:text-lg transition-all duration-300 overflow-hidden">
+                    <span className="relative z-10">{content?.ctaText}</span>
                     <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">
                       <MoveRight className='w-4 h-4 sm:w-5 sm:h-5' />
                     </span>
@@ -135,18 +177,18 @@ export default function HomePage() {
             <h1
               className="absolute text-[60px] sm:text-[100px] md:text-[140px] lg:text-[180px] xl:text-[200px] text-stroke text-white/5 select-none font-bold z-10"
             >
-              $600K
+              {content?.bigStat}
             </h1>
 
             {/* Foreground content */}
             <div className="z-10 text-center space-y-1 md:space-y-2 px-4 max-w-6xl mx-auto">
               <h2 className="text-white font-light text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl">
-                Get Exposure has profitably spent over
+                {content?.statsText1}
               </h2>
               <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl">
-                <span className="text-white font-semibold">$600K in Ad spend</span>
+                <span className="text-white font-semibold">{content?.statsText2}</span>
                 {' '}
-                <span className="text-gray-300 font-light">and generated over $2.4M.</span>
+                <span className="text-gray-300 font-light">{content?.statsText3}</span>
               </h2>
             </div>
           </section>
@@ -155,12 +197,12 @@ export default function HomePage() {
           <div className="relative">
             <div id="solutions" className="mx-auto px-4 sm:px-6 py-8 md:py-12 lg:py-16 text-center max-w-7xl">
               <h2 id="journey" className="text-white mb-6 md:mb-8 font-semibold font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl leading-tight px-2 max-w-5xl mx-auto">
-                <span className="">Where Are You in Your</span>
+                <span className="">{content?.journeyTitle1}</span>
                 <br />
-                <span className="font-poppins tracking-wide font-normal text-gray-300">Advertising Journey</span>
+                <span className="font-poppins tracking-wide font-normal text-gray-300">{content?.journeyTitle2}</span>
               </h2>
               <p className="text-sm sm:text-base md:text-base lg:text-lg xl:text-lg mt-4 md:mt-6 font-light tracking-wide leading-relaxed text-center mx-auto text-gray-400 font-roboto lg:mb-16 max-w-3xl px-2">
-                We start by pinpointing exactly where you are in your advertising journey. Every business is unique, and your challenges require tailored solutions.
+                {content?.journeyDesc}
               </p>
             </div>
 
@@ -180,5 +222,13 @@ export default function HomePage() {
       </div>
     </>
 
+  )
+}
+
+export default function HomePage() {
+  return (
+    <QueryProvider>
+      <HomePageContent />
+    </QueryProvider>
   )
 }

@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { Raleway, Inter, Roboto } from 'next/font/google'; // Import Roboto here
 import SmoothScrollProvider from '@/components/SmoothScrollProvider'
 import { Poppins } from 'next/font/google';
+import ConditionalFooter from '@/components/ConditionalFooter'
 
 import CustomScrollbar from '@/components/CustomScrollbar'
 
@@ -57,7 +58,7 @@ export default function RootLayout({ children }) {
           {children}
         </SmoothScrollProvider>
         <CustomScrollbar />
-        <Footer />
+        <ConditionalFooter />
       </body>
     </html>
   )
