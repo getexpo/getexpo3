@@ -6,6 +6,8 @@ generator client {
 }
 
 datasource db {
+  // For local development: use "sqlite"
+  // For Vercel/production: use "postgresql"
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
