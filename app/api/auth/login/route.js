@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server'
-import prisma from '@/lib/prisma'
-import { verifyPassword, createToken, setAuthCookie } from '@/lib/auth'
+import { createToken, setAuthCookie } from '@/lib/auth'
 import { loginSchema } from '@/lib/validations'
+
+// Hardcoded admin credentials (not linked to database)
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123'
 
 export async function POST(request) {
   try {
@@ -18,21 +21,8 @@ export async function POST(request) {
 
     const { username, password } = validation.data
 
-    // Find admin user
-    const admin = await prisma.admin.findUnique({
-      where: { username },
-    })
-
-    if (!admin) {
-      return NextResponse.json(
-        { error: 'Invalid credentials' },
-        { status: 401 }
-      )
-    }
-
-    // Verify password
-    const isValid = await verifyPassword(password, admin.password)
-    if (!isValid) {
+    // Check hardcoded admin credentials
+    if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
         { status: 401 }
@@ -41,8 +31,8 @@ export async function POST(request) {
 
     // Create JWT token
     const token = await createToken({ 
-      id: admin.id, 
-      username: admin.username 
+      id: 'admin-1', 
+      username: username 
     })
 
     // Set cookie
@@ -51,8 +41,8 @@ export async function POST(request) {
     return NextResponse.json({
       success: true,
       user: {
-        id: admin.id,
-        username: admin.username,
+        id: 'admin-1',
+        username: username,
       },
     })
   } catch (error) {
