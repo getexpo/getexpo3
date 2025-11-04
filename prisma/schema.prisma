@@ -3,13 +3,13 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  // For local development: use "sqlite"
-  // For Vercel/production: use "postgresql"
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // Admin authentication
