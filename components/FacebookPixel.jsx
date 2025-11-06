@@ -2,10 +2,10 @@
 
 import Script from 'next/script'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { fbPageview } from '@/lib/analytics'
 
-export default function FacebookPixel({ pixelId }) {
+function FBTracking() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -13,6 +13,10 @@ export default function FacebookPixel({ pixelId }) {
     fbPageview()
   }, [pathname, searchParams])
 
+  return null
+}
+
+export default function FacebookPixel({ pixelId }) {
   if (!pixelId || pixelId === '') {
     return null
   }
@@ -45,6 +49,9 @@ export default function FacebookPixel({ pixelId }) {
           src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
         />
       </noscript>
+      <Suspense fallback={null}>
+        <FBTracking />
+      </Suspense>
     </>
   )
 }

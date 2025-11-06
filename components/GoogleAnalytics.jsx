@@ -2,10 +2,10 @@
 
 import Script from 'next/script'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { pageview } from '@/lib/analytics'
 
-export default function GoogleAnalytics({ gaId }) {
+function GATracking({ gaId }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -15,6 +15,10 @@ export default function GoogleAnalytics({ gaId }) {
     }
   }, [pathname, searchParams])
 
+  return null
+}
+
+export default function GoogleAnalytics({ gaId }) {
   if (!gaId || gaId === '') {
     return null
   }
@@ -39,6 +43,9 @@ export default function GoogleAnalytics({ gaId }) {
           `,
         }}
       />
+      <Suspense fallback={null}>
+        <GATracking gaId={gaId} />
+      </Suspense>
     </>
   )
 }
