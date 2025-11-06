@@ -63,7 +63,7 @@ export default function NotFound() {
             Page Not Found
           </h2>
           <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-raleway">
-            Looks like you've ventured into uncharted territory. The page you're looking for doesn't exist or has been moved.
+            Looks like you&apos;ve ventured into uncharted territory. The page you&apos;re looking for doesn&apos;t exist or has been moved.
           </p>
         </div>
 
