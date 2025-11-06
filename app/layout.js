@@ -1,13 +1,14 @@
-// import { Metadata } from 'next'
 import './globals.css'
-// import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { Raleway, Inter, Roboto } from 'next/font/google'; // Import Roboto here
+import { Raleway, Inter, Roboto } from 'next/font/google'
 import SmoothScrollProvider from '@/components/SmoothScrollProvider'
-import { Poppins } from 'next/font/google';
+import { Poppins } from 'next/font/google'
 import ConditionalFooter from '@/components/ConditionalFooter'
-
 import CustomScrollbar from '@/components/CustomScrollbar'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
+import FacebookPixel from '@/components/FacebookPixel'
+import GoogleTagManager from '@/components/GoogleTagManager'
+import { OrganizationSchema, ServiceSchema } from '@/components/StructuredData'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -38,12 +39,54 @@ const roboto = Roboto({
   display: 'swap',
 });
 
-// export const metadata {
-//   title: "GetExposure - Transform Your Ad Spend Into Real Customers",
-//   description:
-//     "Stop wasting money on ads that don't convert. Our data-driven approach optimizes your campaigns for maximum ROI, turning every dollar spent into measurable growth.",
-
-// }
+export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://getexpo3-tawny.vercel.app'),
+  title: {
+    default: 'Get Exposure - Transform Your Ad Spend Into Real Results',
+    template: '%s | Get Exposure'
+  },
+  description: 'Transform your ad campaigns into profitable growth engines. Expert advertising optimization, scaling strategies, and campaign management. Over $600K managed, $2.4M+ generated.',
+  keywords: ['advertising optimization', 'facebook ads', 'ad scaling', 'digital marketing', 'ad campaign management', 'ROI optimization', 'performance marketing'],
+  authors: [{ name: 'Get Exposure' }],
+  creator: 'Get Exposure',
+  publisher: 'Get Exposure',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: '/',
+    siteName: 'Get Exposure',
+    title: 'Get Exposure - Transform Your Ad Spend Into Real Results',
+    description: 'Expert advertising optimization and scaling strategies. Over $600K managed, $2.4M+ generated.',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Get Exposure - Advertising Experts',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Get Exposure - Transform Your Ad Spend Into Real Results',
+    description: 'Expert advertising optimization and scaling strategies. Over $600K managed, $2.4M+ generated.',
+    images: ['/logo.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -52,8 +95,14 @@ export default function RootLayout({ children }) {
       className={`${raleway.variable} ${poppins.variable} ${inter.variable} ${roboto.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+      </head>
       <body suppressHydrationWarning>
-        {/* <Navbar /> */}
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID} />
+        <OrganizationSchema />
+        <ServiceSchema />
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>

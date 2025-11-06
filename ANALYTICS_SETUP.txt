@@ -1,0 +1,176 @@
+========================================
+ANALYTICS & SEO SETUP GUIDE
+========================================
+
+✅ IMPLEMENTED FEATURES:
+------------------------
+1. Sitemap (Dynamic) - /sitemap.xml
+2. Robots.txt - /robots.txt
+3. Google Analytics (GA4)
+4. Facebook Pixel
+5. Google Tag Manager (GTM)
+6. Structured Data (Schema.org)
+7. SEO Meta Tags
+8. Open Graph Tags
+9. Twitter Cards
+
+========================================
+SETUP INSTRUCTIONS:
+========================================
+
+1. GOOGLE ANALYTICS (GA4)
+------------------------
+a) Go to: https://analytics.google.com
+b) Create property → Get Measurement ID (format: G-XXXXXXXXXX)
+c) Add to Vercel env: NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+
+2. FACEBOOK PIXEL
+------------------------
+a) Go to: https://business.facebook.com/events_manager
+b) Create Pixel → Get Pixel ID (numeric)
+c) Add to Vercel env: NEXT_PUBLIC_FB_PIXEL_ID=123456789
+
+3. GOOGLE TAG MANAGER
+------------------------
+a) Go to: https://tagmanager.google.com
+b) Create Container → Get Container ID (format: GTM-XXXXXXX)
+c) Add to Vercel env: NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
+
+4. GOOGLE SEARCH CONSOLE
+------------------------
+a) Go to: https://search.google.com/search-console
+b) Add property: https://getexpo3-tawny.vercel.app
+c) Verify using HTML meta tag method:
+   - Copy verification code
+   - Add to Vercel env: NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your_code
+d) Submit sitemap: https://getexpo3-tawny.vercel.app/sitemap.xml
+
+5. SITE URL
+------------------------
+Add to Vercel env: NEXT_PUBLIC_SITE_URL=https://getexpo3-tawny.vercel.app
+
+========================================
+VERCEL ENVIRONMENT VARIABLES:
+========================================
+
+Add these in Vercel Dashboard → Settings → Environment Variables:
+
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_FB_PIXEL_ID=123456789
+NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your_verification_code
+NEXT_PUBLIC_SITE_URL=https://getexpo3-tawny.vercel.app
+
+========================================
+TESTING & VALIDATION:
+========================================
+
+1. GOOGLE TAG ASSISTANT
+   - Install: https://chrome.google.com/webstore (Google Tag Assistant)
+   - Visit your site → Check if tags fire
+
+2. META PIXEL HELPER
+   - Install: https://chrome.google.com/webstore (Meta Pixel Helper)
+   - Visit your site → Check pixel status
+
+3. GOOGLE RICH RESULTS TEST
+   - Go to: https://search.google.com/test/rich-results
+   - Enter URL → Check structured data
+
+4. MOBILE-FRIENDLY TEST
+   - Go to: https://search.google.com/test/mobile-friendly
+   - Enter URL → Check responsiveness
+
+5. SITEMAP TEST
+   - Visit: https://getexpo3-tawny.vercel.app/sitemap.xml
+   - Should show XML with all pages
+
+6. ROBOTS TEST
+   - Visit: https://getexpo3-tawny.vercel.app/robots.txt
+   - Should show crawl directives
+
+========================================
+GTM CONTAINER SETUP:
+========================================
+
+If using GTM, add these tags in GTM:
+
+1. Google Analytics GA4 Config
+   - Type: Google Analytics: GA4 Configuration
+   - Measurement ID: {{GA Measurement ID}}
+   - Trigger: All Pages
+
+2. Facebook Pixel Base Code
+   - Type: Custom HTML
+   - Trigger: All Pages
+   (Note: Already added via FacebookPixel.jsx)
+
+========================================
+EVENT TRACKING:
+========================================
+
+Use these functions in your code:
+
+1. Google Analytics Events:
+   import { event } from '@/lib/analytics'
+   
+   event({
+     action: 'button_click',
+     category: 'CTA',
+     label: 'Book Consultation',
+     value: 1
+   })
+
+2. Facebook Pixel Events:
+   import { fbEvent } from '@/lib/analytics'
+   
+   fbEvent('Lead', {
+     content_name: 'Consultation Form',
+     value: 100,
+     currency: 'USD'
+   })
+
+========================================
+COMMON FACEBOOK PIXEL EVENTS:
+========================================
+
+- PageView (auto-tracked)
+- Lead
+- ViewContent
+- AddToCart
+- InitiateCheckout
+- Purchase
+- CompleteRegistration
+- Contact
+- Schedule
+
+========================================
+VERIFICATION CHECKLIST:
+========================================
+
+□ Sitemap accessible at /sitemap.xml
+□ Robots.txt accessible at /robots.txt
+□ Google Analytics tracking
+□ Facebook Pixel firing
+□ GTM container loaded
+□ Structured data validated
+□ Meta tags present
+□ Open Graph tags present
+□ Mobile-friendly
+□ Search Console verified
+□ Sitemap submitted to Search Console
+
+========================================
+POST-DEPLOYMENT:
+========================================
+
+1. Deploy to Vercel
+2. Add all environment variables
+3. Verify analytics with browser extensions
+4. Submit sitemap to Google Search Console
+5. Test all tracking events
+6. Monitor in GA4 Real-time reports
+7. Check Facebook Events Manager
+
+========================================
+
