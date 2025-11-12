@@ -16,6 +16,7 @@ import { MoveRight } from 'lucide-react';
 import Casestudies from '../../../components/Casestudies';
 import Navbar from '@/components/Navbar'
 import Contact from '../../../components/Contact'
+import QueryProvider from '@/components/admin/QueryProvider'
 const FullData = {
     page_2_3: [
         {
@@ -301,7 +302,7 @@ const Page = () => {
 
 
     return (
-        <>
+        <QueryProvider>
             <Navbar action={action} />
             <div className='relative pb-40'>
                 <div className="absolute w-full h-[200px] bg-gradient-to-t   z-[100] from-black via-black/30 to-transparent bottom-0 left-0">
@@ -325,16 +326,16 @@ const Page = () => {
                 ></motion.div>
                 <div className='container relative mx-auto py-8 sm:py-12 md:py-16'>
 
-                    <div className='Titlecont min-h-[40vh] sm:min-h-[50vh] flex item-center justify-evenly flex-col px-4 sm:px-6 md:px-8 lg:px-0'>
-                        <h1 className='Title text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-8xl font-poppins text-center mb-4 sm:mb-6'>{title}</h1>
+                    <div className='Titlecont min-h-[30vh] sm:min-h-[35vh] flex item-center justify-center flex-col px-4 sm:px-6 md:px-8 lg:px-0'>
+                        <h1 className='Title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-poppins text-center mb-3 sm:mb-4 md:mb-5'>{title}</h1>
 
-                        <p className='text-center leading-normal text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl w-full md:w-[80%] lg:w-[65%] text-gray-300 mx-auto'>Hey, nice to meet you. Since you&apos;re already spending on ads but not seeing optimal results, here&apos;s what your journey might look like once we start working together.</p>
+                        <p className='text-center leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl w-full md:w-[85%] lg:w-[75%] xl:w-[70%] text-gray-300 mx-auto'>Hey, nice to meet you. Since you&apos;re already spending on ads but not seeing optimal results, here&apos;s what your journey might look like once we start working together.</p>
                     </div>
-                    <div className="Videocont w-full flex my-12 sm:my-16 md:my-20 items-center justify-center px-4 md:px-0">
+                    <div className="Videocont w-full flex mt-6 sm:mt-8 md:mt-10 mb-8 sm:mb-10 md:mb-12 items-center justify-center px-4 md:px-0">
                         {video && (
                             <iframe
                                 src={video}
-                                className="w-full max-w-[640px] h-auto aspect-video"
+                                className="w-full max-w-[90%] sm:max-w-[640px] md:max-w-[700px] lg:max-w-[800px] h-auto aspect-video rounded-lg"
                                 allow="autoplay"
                                 allowFullScreen
                                 title="Solution Video"
@@ -425,7 +426,7 @@ const Page = () => {
             <Casestudies />
             <Contact />
 
-        </>
+        </QueryProvider>
 
     )
 }
