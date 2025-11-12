@@ -200,22 +200,7 @@ const Page = () => {
     };
 
     useGSAP(() => {
-        gsap.to(
-            '.Title',
-            {
-                opacity: 0.1,
-                y: 10,
-                rotateX: -20,
-                duration: 0.2,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: '.Titlecont',
-                    start: "bottom 50%",
-                    end: "bottom center",
-                    scrub: 1,
-                },
-            }
-        );
+        // Removed the Title animation to keep it white
         gsap.from('.Video', {
             scale: 0.6,
             opacity: 0.7,
@@ -327,7 +312,7 @@ const Page = () => {
                 <div className='container relative mx-auto py-8 sm:py-12 md:py-16'>
 
                     <div className='Titlecont min-h-[30vh] sm:min-h-[35vh] flex item-center justify-center flex-col px-4 sm:px-6 md:px-8 lg:px-0'>
-                        <h1 className='Title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-poppins text-center mb-3 sm:mb-4 md:mb-5'>{title}</h1>
+                        <h1 className='Title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-poppins text-center mb-3 sm:mb-4 md:mb-5 text-white'>{title}</h1>
 
                         <p className='text-center leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl w-full md:w-[85%] lg:w-[75%] xl:w-[70%] text-gray-300 mx-auto'>Hey, nice to meet you. Since you&apos;re already spending on ads but not seeing optimal results, here&apos;s what your journey might look like once we start working together.</p>
                     </div>
