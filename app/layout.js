@@ -7,7 +7,7 @@ import ConditionalFooter from '@/components/ConditionalFooter'
 import CustomScrollbar from '@/components/CustomScrollbar'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import FacebookPixel from '@/components/FacebookPixel'
-import GoogleTagManager from '@/components/GoogleTagManager'
+import { GTMHead, GTMBody } from '@/components/GoogleTagManager'
 import { OrganizationSchema, ServiceSchema } from '@/components/StructuredData'
 
 const poppins = Poppins({
@@ -89,6 +89,9 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PBZ54QS9'
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-849B9BFXVF'
+  
   return (
     <html 
       lang="en" 
@@ -96,10 +99,11 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        <GTMHead gtmId={gtmId} />
       </head>
       <body suppressHydrationWarning>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        <GTMBody gtmId={gtmId} />
+        <GoogleAnalytics gaId={gaId} />
         <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID} />
         <OrganizationSchema />
         <ServiceSchema />
