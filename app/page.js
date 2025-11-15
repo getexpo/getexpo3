@@ -49,7 +49,6 @@ function HomePageContent() {
     placeholderData: [
       {path: '/brands/1.png'},
       {path: '/brands/2.png'},
-      {path: '/brands/3.png'},
       {path: '/brands/4.png'},
       {path: '/brands/5.png'},
       {path: '/brands/6.png'},
