@@ -88,6 +88,14 @@ export const metadata = {
   },
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#000000',
+}
+
 export default function RootLayout({ children }) {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PBZ54QS9'
   const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-849B9BFXVF'

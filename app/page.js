@@ -88,17 +88,17 @@ function HomePageContent() {
               }}
             ></div>
 
-            <div className="mx-auto lg:px-10 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:px-0 w-full px-2 flex items-center justify-center relative z-[100] pb-56 sm:pb-60 md:pb-64 lg:pb-72 xl:pb-80">
-              <div className="space-y-4 md:space-y-6 px-4 md:px-0 max-w-7xl mx-auto mb-8">
-                <div className="space-y-2 md:space-y-3 flex items-center justify-center flex-col">
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl max-w-5xl text-center font-poppins leading-tight">
+            <div className="mx-auto lg:px-10 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:px-0 w-full px-4 sm:px-6 flex items-center justify-center relative z-[100] pb-56 sm:pb-60 md:pb-64 lg:pb-72 xl:pb-80">
+              <div className="space-y-5 sm:space-y-6 md:space-y-7 px-2 sm:px-4 md:px-0 max-w-7xl mx-auto mb-8">
+                <div className="space-y-3 sm:space-y-4 md:space-y-5 flex items-center justify-center flex-col">
+                  <h1 className="text-[32px] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl max-w-5xl text-center font-poppins leading-[1.2] sm:leading-tight">
                     {/* First line */}
                     <span className="block text-white font-semibold">
                       {content?.heroTitle1}
                     </span>
                     
                     {/* Second line with dynamic words */}
-                    <span className="flex flex-row items-center gap-2 md:gap-3 justify-center mt-1 md:mt-2">
+                    <span className="flex flex-row items-center gap-2 sm:gap-3 md:gap-3 justify-center mt-2 sm:mt-2 md:mt-2">
                       <span className="font-semibold text-white">{content?.heroTitle2}</span>
                       <span
                         className="font-semibold"
@@ -117,18 +117,18 @@ function HomePageContent() {
                 </div>
 
                 {/* Sub-headline with improved spacing */}
-                <h2 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl max-w-4xl mx-auto font-poppins text-center text-white/95 font-normal leading-relaxed px-2">
+                <h2 className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl max-w-4xl mx-auto font-poppins text-center text-white/95 font-normal leading-relaxed px-2">
                   {content?.subHeadline}
                 </h2>
-                <p className="text-sm sm:text-base md:text-base lg:text-lg xl:text-lg font-normal tracking-wide leading-relaxed text-center w-[95%] md:w-[85%] lg:w-[70%] max-w-3xl mx-auto text-white/75 font-roboto px-2">
+                <p className="text-[15px] sm:text-base md:text-lg lg:text-lg xl:text-xl font-normal tracking-wide leading-relaxed text-center w-[95%] md:w-[85%] lg:w-[70%] max-w-3xl mx-auto text-white/75 font-roboto px-2">
                   {content?.description}
                 </p>
 
-                <div className="w-full flex item-center justify-center pt-3 md:pt-4 px-4 pb-4">
-                  <a href={content?.ctaLink} target='_blank' className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-3.5 md:px-10 md:py-4 bg-white hover:bg-gray-200 text-black font-medium text-sm sm:text-base md:text-base lg:text-lg transition-all duration-300 overflow-hidden">
+                <div className="w-full flex item-center justify-center pt-4 md:pt-5 px-4 pb-4">
+                  <a href={content?.ctaLink} target='_blank' className="group relative inline-flex items-center justify-center gap-3 sm:gap-3 px-8 sm:px-10 py-4 sm:py-4 md:px-12 md:py-5 bg-white hover:bg-gray-200 text-black font-medium text-base sm:text-lg md:text-lg lg:text-xl transition-all duration-300 overflow-hidden min-h-[56px] rounded-md">
                     <span className="relative z-10">{content?.ctaText}</span>
                     <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">
-                      <MoveRight className='w-4 h-4 sm:w-5 sm:h-5' />
+                      <MoveRight className='w-5 h-5 sm:w-5 sm:h-5' />
                     </span>
                   </a>
                 </div>
@@ -174,17 +174,17 @@ function HomePageContent() {
 
             {/* Giant background text with fade effect */}
             <h1
-              className="absolute text-[60px] sm:text-[100px] md:text-[140px] lg:text-[180px] xl:text-[200px] text-stroke text-white/5 select-none font-bold z-10"
+              className="absolute text-[80px] sm:text-[120px] md:text-[140px] lg:text-[180px] xl:text-[200px] text-stroke text-white/5 select-none font-bold z-10"
             >
               {content?.bigStat}
             </h1>
 
             {/* Foreground content */}
-            <div className="z-10 text-center space-y-1 md:space-y-2 px-4 max-w-6xl mx-auto">
-              <h2 className="text-white font-light text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl">
+            <div className="z-10 text-center space-y-2 md:space-y-3 px-4 max-w-6xl mx-auto">
+              <h2 className="text-white font-light text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl leading-relaxed">
                 {content?.statsText1}
               </h2>
-              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl">
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl leading-relaxed">
                 <span className="text-white font-semibold">{content?.statsText2}</span>
                 {' '}
                 <span className="text-gray-300 font-light">{content?.statsText3}</span>
@@ -194,13 +194,13 @@ function HomePageContent() {
 
           {/* Enhanced Where Are You Section */}
           <div className="relative">
-            <div id="solutions" className="mx-auto px-4 sm:px-6 py-8 md:py-12 lg:py-16 text-center max-w-7xl">
-              <h2 id="journey" className="text-white mb-6 md:mb-8 font-semibold font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl leading-tight px-2 max-w-5xl mx-auto">
+            <div id="solutions" className="mx-auto px-4 sm:px-6 py-10 md:py-14 lg:py-16 text-center max-w-7xl">
+              <h2 id="journey" className="text-white mb-6 md:mb-8 font-semibold font-poppins text-[28px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl leading-[1.3] sm:leading-tight px-2 max-w-5xl mx-auto">
                 <span className="">{content?.journeyTitle1}</span>
                 <br />
                 <span className="font-poppins tracking-wide font-normal text-gray-300">{content?.journeyTitle2}</span>
               </h2>
-              <p className="text-sm sm:text-base md:text-base lg:text-lg xl:text-lg mt-4 md:mt-6 font-light tracking-wide leading-relaxed text-center mx-auto text-gray-400 font-roboto lg:mb-16 max-w-3xl px-2">
+              <p className="text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-xl mt-5 md:mt-6 font-light tracking-wide leading-relaxed text-center mx-auto text-gray-400 font-roboto lg:mb-16 max-w-3xl px-2">
                 {content?.journeyDesc}
               </p>
             </div>

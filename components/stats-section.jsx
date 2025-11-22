@@ -70,7 +70,7 @@ export default function StatsSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4"
+            className="text-[24px] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 leading-[1.2] sm:leading-tight"
           >
             Our Proven Results
           </motion.h2>
@@ -78,7 +78,7 @@ export default function StatsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed px-4"
+            className="text-[15px] sm:text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed px-4"
           >
             See how we've transformed campaigns from struggling to scaling by implementing our proprietary systems and
             data-driven strategies.
@@ -98,7 +98,7 @@ export default function StatsSection() {
               >
                 <div className="relative h-full">
                   {/* Minimal card with subtle border */}
-                  <div className="bg-black border border-gray-800 hover:border-gray-700 transition-all duration-300 h-full p-8 sm:p-10 flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4">
+                  <div className="bg-black border border-gray-800 hover:border-gray-700 transition-all duration-300 h-full p-8 sm:p-10 flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 min-h-[160px]">
                     
                     {/* Simple icon */}
                     <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">

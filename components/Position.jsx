@@ -77,7 +77,7 @@ const Position = () => {
                                 <button
                                     key={id}
                                     onClick={() => setSelected(id)}
-                                    className={`relative z-10 flex items-center gap-2 px-4 sm:px-5 md:px-7 lg:px-[2vw] py-3 sm:py-3.5 md:py-4 lg:py-[1.2vw] cursor-pointer transition-colors duration-200 rounded-xl md:rounded-full overflow-hidden
+                                    className={`relative z-10 flex items-center gap-2 px-5 sm:px-6 md:px-7 lg:px-[2vw] py-3.5 sm:py-4 md:py-4 lg:py-[1.2vw] cursor-pointer transition-colors duration-200 rounded-xl md:rounded-full overflow-hidden min-h-[52px]
                                 ${selected === id ? "" : "hover:bg-white/5"}
                             `}
                                 >
@@ -91,7 +91,7 @@ const Position = () => {
                                     )}
                                     
                                     <span
-                                        className={`relative z-10 block flex-1 text-xs sm:text-sm md:text-base lg:text-lg xl:text-[1.15vw] font-poppins tracking-wide transition-colors duration-200 whitespace-nowrap ${
+                                        className={`relative z-10 block flex-1 text-sm sm:text-base md:text-base lg:text-lg xl:text-[1.15vw] font-poppins tracking-wide transition-colors duration-200 whitespace-nowrap ${
                                             selected === id 
                                                 ? "text-white font-semibold" 
                                                 : "text-gray-400 hover:text-white/80"
@@ -126,8 +126,8 @@ const Position = () => {
                                 </div>
                                 <div className='text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6'>
                                     <div className='space-y-3 md:space-y-4'>
-                                        <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-tight'>{data.rocket.title}</h1>
-                                        <h3 className='text-sm sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.rocket.subtitle}</h3>
+                                        <h1 className='text-[24px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.rocket.title}</h1>
+                                        <h3 className='text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.rocket.subtitle}</h3>
                                     </div>
                                     <p className='text-start text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 italic font-roboto xl:text-[1.6vw] font-light leading-relaxed'>{data.rocket.description}</p>
                                     
@@ -136,7 +136,7 @@ const Position = () => {
                                         href={data.rocket.calendlyLink} 
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98]"
+                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px]"
                                     >
                                         <span className="relative z-10 tracking-wide">Get Started</span>
                                         <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -164,8 +164,8 @@ const Position = () => {
                                 </div>
                                 <div className='text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6'>
                                     <div className='space-y-3 md:space-y-4'>
-                                        <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-tight'>{data.station.title}</h1>
-                                        <h3 className='text-sm sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.station.subtitle}</h3>
+                                        <h1 className='text-[24px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.station.title}</h1>
+                                        <h3 className='text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.station.subtitle}</h3>
                                     </div>
                                     <p className='text-start text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 italic font-roboto xl:text-[1.6vw] font-light leading-relaxed'>{data.station.description}</p>
                                     
@@ -174,7 +174,7 @@ const Position = () => {
                                         href={data.station.calendlyLink} 
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98]"
+                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px]"
                                     >
                                         <span className="relative z-10 tracking-wide">Get Started</span>
                                         <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -199,8 +199,8 @@ const Position = () => {
                             >
                                 <div className='text-start font-poppins flex flex-wrap items-start justify-center flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6'>
                                     <div className='space-y-3 md:space-y-4'>
-                                        <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-tight'>{data.parts.title}</h1>
-                                        <h3 className='text-sm sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.parts.subtitle}</h3>
+                                        <h1 className='text-[24px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.parts.title}</h1>
+                                        <h3 className='text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.parts.subtitle}</h3>
                                     </div>
                                     <p className='text-start text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 italic font-roboto xl:text-[1.6vw] font-light leading-relaxed'>{data.parts.description}</p>
                                     
@@ -209,7 +209,7 @@ const Position = () => {
                                         href={data.parts.calendlyLink} 
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98]"
+                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px]"
                                     >
                                         <span className="relative z-10 tracking-wide">Get Started</span>
                                         <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">

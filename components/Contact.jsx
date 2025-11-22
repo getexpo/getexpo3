@@ -102,14 +102,14 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16 sm:mb-20 md:mb-24 space-y-4 sm:space-y-6"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-poppins font-bold text-white tracking-tight leading-none">
+          <h2 className="text-[28px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-poppins font-bold text-white tracking-tight leading-[1.2] sm:leading-none">
             Ready to Scale
             <br />
             <span className="text-gray-400 font-normal">
               Your Advertising?
             </span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-roboto">
+          <p className="text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-roboto">
             Book a free consultation to discover how we can transform your ad campaigns into a profitable growth engine.
           </p>
         </motion.div>
@@ -123,10 +123,10 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-8 sm:space-y-10 lg:space-y-12"
+            className="space-y-8 sm:space-y-10 lg:space-y-12 w-full flex flex-col items-center lg:items-start text-center lg:text-left"
           >
             {/* What You Get Section */}
-            <div>
+            <div className="w-full">
               <h3 className="text-xl sm:text-2xl md:text-3xl font-poppins font-bold text-white mb-6 sm:mb-8">
                 What You'll Get
               </h3>
@@ -138,10 +138,10 @@ export default function Contact() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                     viewport={{ once: true }}
-                    className="flex items-start gap-3 sm:gap-4 group"
+                    className="flex items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-4 group min-h-[44px]"
                   >
                     <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-hover:text-white transition-colors duration-300 flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                    <span className="text-sm sm:text-base md:text-lg text-gray-300 group-hover:text-white transition-colors duration-300 font-roboto">
+                    <span className="text-[15px] sm:text-base md:text-lg text-gray-300 group-hover:text-white transition-colors duration-300 font-roboto">
                       {benefit}
                     </span>
                   </motion.div>
@@ -150,7 +150,7 @@ export default function Contact() {
             </div>
 
             {/* Contact Info Cards */}
-            <div>
+            <div className="w-full">
               <h3 className="text-xl sm:text-2xl md:text-3xl font-poppins font-bold text-white mb-6 sm:mb-8">
                 Get in Touch
               </h3>
@@ -166,17 +166,17 @@ export default function Contact() {
                       viewport={{ once: true }}
                       className="group"
                     >
-                      <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-5 sm:p-6 h-full">
-                        <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-5 sm:p-6 h-full min-h-[100px]">
+                        <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-3 sm:gap-4">
                           <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center">
                             <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                           </div>
                           
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-[10px] sm:text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+                            <h4 className="text-xs sm:text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
                               {info.title}
                             </h4>
-                            <p className="text-sm sm:text-base text-white font-roboto leading-relaxed break-words">
+                            <p className="text-[15px] sm:text-base text-white font-roboto leading-relaxed break-words">
                               {info.details}
                             </p>
                           </div>
@@ -203,11 +203,11 @@ export default function Contact() {
                   viewport={{ once: true }}
                   className="group"
                 >
-                  <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-4 sm:p-6 text-center">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-light text-white mb-1 sm:mb-2 tracking-tight">
+                  <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-5 sm:p-6 text-center min-h-[120px] flex flex-col items-center justify-center">
+                    <div className="text-3xl sm:text-4xl md:text-4xl font-light text-white mb-1 sm:mb-2 tracking-tight">
                       {stat.value}
                     </div>
-                    <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider font-medium">
+                    <div className="text-xs sm:text-xs text-gray-500 uppercase tracking-wider font-medium">
                       {stat.label}
                     </div>
                   </div>
