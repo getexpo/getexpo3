@@ -77,7 +77,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 lg:px-8 relative overflow-x-hidden bg-black">
+    <section id="contact" className="py-16 sm:py-24 md:py-32 lg:py-40 px-6 sm:px-8 lg:px-12 relative overflow-x-hidden bg-black">
       {/* Full black overlay to ensure no white background shows */}
       <div className="absolute inset-0 bg-black z-0"></div>
       {/* Matching gradient background from other pages */}
@@ -122,18 +122,17 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        {/* Main Content Grid */}
+        {/* Main Content - Two Column Layout */}
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 xl:gap-20 items-start">
           
-          {/* Left Column - Info & Benefits */}
+          {/* Left Column - What You'll Get */}
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-8 sm:space-y-10 lg:space-y-12 w-full flex flex-col items-center lg:items-start text-center lg:text-left"
+            className="space-y-8 sm:space-y-10"
           >
-            {/* What You Get Section */}
             <div className="w-full">
               <h3 className="text-xl sm:text-2xl md:text-3xl font-poppins font-bold text-white mb-6 sm:mb-8">
                 What You'll Get
@@ -146,7 +145,7 @@ export default function Contact() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                     viewport={{ once: true }}
-                    className="flex items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-4 group min-h-[44px]"
+                    className="flex items-start gap-3 sm:gap-4 group min-h-[44px]"
                   >
                     <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-hover:text-white transition-colors duration-300 flex-shrink-0 mt-0.5" strokeWidth={1.5} />
                     <span className="text-[15px] sm:text-base md:text-lg text-gray-300 group-hover:text-white transition-colors duration-300 font-roboto">
@@ -156,143 +155,105 @@ export default function Contact() {
                 ))}
               </div>
             </div>
-
-            {/* Contact Info Cards */}
-            <div className="w-full">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-poppins font-bold text-white mb-6 sm:mb-8">
-                Get in Touch
-              </h3>
-              <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
-                {contactInfo.map((info, index) => {
-                  const Icon = info.icon
-                  const content = (
-                    <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-5 sm:p-6 h-full min-h-[100px]">
-                      <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-3 sm:gap-4">
-                        <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center">
-                          <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
-                        </div>
-                        
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-xs sm:text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
-                            {info.title}
-                          </h4>
-                          <p className={`text-[15px] sm:text-base font-roboto leading-relaxed break-words ${info.href ? 'text-white hover:text-gray-300' : 'text-white'}`}>
-                            {info.details}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                  
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 5 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="group"
-                    >
-                      {info.href ? (
-                        <a 
-                          href={info.href}
-                          target={info.linkType === "external" ? "_blank" : "_self"}
-                          rel={info.linkType === "external" ? "noopener noreferrer" : undefined}
-                          className="block cursor-pointer"
-                        >
-                          {content}
-                        </a>
-                      ) : (
-                        content
-                      )}
-                    </motion.div>
-                  )
-                })}
-              </div>
-            </div>
-
-            {/* Stats Row */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-5">
-              {[
-                { value: "50+", label: "Clients" },
-                { value: "$2M+", label: "Revenue" },
-                { value: "24/7", label: "Support" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-5 sm:p-6 text-center min-h-[120px] flex flex-col items-center justify-center">
-                    <div className="text-3xl sm:text-4xl md:text-4xl font-light text-white mb-1 sm:mb-2 tracking-tight">
-                      {stat.value}
-                    </div>
-                    <div className="text-xs sm:text-xs text-gray-500 uppercase tracking-wider font-medium">
-                      {stat.label}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
-{          
+          {/* Right Column - Contact Info Cards */}
           <motion.div
             initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="lg:sticky lg:top-24"
+            className="w-full"
           >
-            <div className="relative group">
-              
-              <div className="absolute -inset-[1px] bg-gradient-to-r from-indigo-500/20 via-pink-500/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
-              
-              
-              <div className="relative bg-gradient-to-b from-[#0a0a0a] to-black border border-white/[0.08] overflow-hidden">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-poppins font-bold text-white mb-6 sm:mb-8">
+              Get in Touch
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full">
+              {contactInfo.map((info, index) => {
+                const Icon = info.icon
+                const content = (
+                  <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-5 sm:p-6 h-full min-h-[140px] flex flex-col">
+                    <div className="flex flex-col items-start text-left gap-3 sm:gap-4 h-full">
+                      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-start">
+                        <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                      </div>
+                      
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+                          {info.title}
+                        </h4>
+                        <p className={`text-[15px] sm:text-base font-roboto leading-relaxed break-words ${info.href ? 'text-white hover:text-gray-300' : 'text-white'}`}>
+                          {info.details}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )
                 
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                
-                
-                <div className="bg-black p-1">
-                  <iframe
-                    src="https://api.leadconnectorhq.com/widget/form/MmLpa6o7BIV28EOlv2CZ"
-                    scrolling="no"
-                    style={{
-                      width: "100%",
-                      height: "650px",
-                      border: "none",
-                      overflow: "hidden",
-                      background: "#000000",
-                      colorScheme: "dark",
-                    }}
-                    className="sm:h-[700px] md:h-[750px]"
-                    id="inline-MmLpa6o7BIV28EOlv2CZ"
-                    data-layout='{"id":"INLINE"}'
-                    data-trigger-type="alwaysShow"
-                    data-trigger-value=""
-                    data-activation-type="alwaysActivated"
-                    data-activation-value=""
-                    data-deactivation-type="neverDeactivate"
-                    data-deactivation-value=""
-                    data-form-name="Discover new Marketing Strategies"
-                    data-height="700"
-                    data-layout-iframe-id="inline-MmLpa6o7BIV28EOlv2CZ"
-                    data-form-id="MmLpa6o7BIV28EOlv2CZ"
-                    title="Discover new Marketing Strategies"
-                  />
-                </div>
-
-                <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </div>
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 5 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group"
+                  >
+                    {info.href ? (
+                      <a 
+                        href={info.href}
+                        target={info.linkType === "external" ? "_blank" : "_self"}
+                        rel={info.linkType === "external" ? "noopener noreferrer" : undefined}
+                        className="block cursor-pointer h-full"
+                      >
+                        {content}
+                      </a>
+                    ) : (
+                      content
+                    )}
+                  </motion.div>
+                )
+              })}
             </div>
           </motion.div>
-         }
-        
         </div>
+
+        {/* Stats Row - Below Both Columns */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-12 sm:mt-16 lg:mt-20"
+        >
+          <div className="grid grid-cols-3 gap-4 sm:gap-5 w-full max-w-4xl mx-auto">
+            {[
+              { value: "50+", label: "Clients" },
+              { value: "$2M+", label: "Revenue" },
+              { value: "24/7", label: "Support" },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-5 sm:p-6 text-center min-h-[120px] flex flex-col items-center justify-center">
+                  <div className="text-3xl sm:text-4xl md:text-4xl font-light text-white mb-1 sm:mb-2 tracking-tight">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-xs text-gray-500 uppercase tracking-wider font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+
 
         {/* Trust Badge Section */}
         <motion.div
