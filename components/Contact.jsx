@@ -43,21 +43,29 @@ export default function Contact() {
       icon: MapPin,
       title: "Location",
       details: "Vancouver, BC, Canada",
+      href: "https://www.google.com/maps/place/Vancouver,+BC,+Canada",
+      linkType: "external",
     },
     {
       icon: Phone,
       title: "Phone",
       details: "+1 778 712 3301",
+      href: "tel:+17787123301",
+      linkType: "tel",
     },
     {
       icon: Mail,
       title: "Email",
       details: "team@getexposure.ca",
+      href: "mailto:team@getexposure.ca",
+      linkType: "mailto",
     },
     {
       icon: Clock,
       title: "Business Hours",
       details: "Mon-Fri: 9AM-6PM PST",
+      href: null,
+      linkType: null,
     },
   ]
 
@@ -69,7 +77,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-black">
+    <section id="contact" className="py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 lg:px-8 relative overflow-x-hidden bg-black">
       {/* Full black overlay to ensure no white background shows */}
       <div className="absolute inset-0 bg-black z-0"></div>
       {/* Matching gradient background from other pages */}
@@ -96,7 +104,7 @@ export default function Contact() {
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Header Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
@@ -119,7 +127,7 @@ export default function Contact() {
           
           {/* Left Column - Info & Benefits */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
@@ -134,7 +142,7 @@ export default function Contact() {
                 {benefits.map((benefit, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: -10 }}
+                    initial={{ opacity: 0, x: -5 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                     viewport={{ once: true }}
@@ -157,31 +165,46 @@ export default function Contact() {
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                 {contactInfo.map((info, index) => {
                   const Icon = info.icon
+                  const content = (
+                    <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-5 sm:p-6 h-full min-h-[100px]">
+                      <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-3 sm:gap-4">
+                        <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center">
+                          <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                        </div>
+                        
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-xs sm:text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+                            {info.title}
+                          </h4>
+                          <p className={`text-[15px] sm:text-base font-roboto leading-relaxed break-words ${info.href ? 'text-white hover:text-gray-300' : 'text-white'}`}>
+                            {info.details}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                  
                   return (
                     <motion.div
                       key={index}
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 5 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                       viewport={{ once: true }}
                       className="group"
                     >
-                      <div className="bg-black border border-white/[0.08] hover:border-white/20 transition-all duration-300 p-5 sm:p-6 h-full min-h-[100px]">
-                        <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-3 sm:gap-4">
-                          <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center">
-                            <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
-                          </div>
-                          
-                          <div className="flex-1 min-w-0">
-                            <h4 className="text-xs sm:text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
-                              {info.title}
-                            </h4>
-                            <p className="text-[15px] sm:text-base text-white font-roboto leading-relaxed break-words">
-                              {info.details}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                      {info.href ? (
+                        <a 
+                          href={info.href}
+                          target={info.linkType === "external" ? "_blank" : "_self"}
+                          rel={info.linkType === "external" ? "noopener noreferrer" : undefined}
+                          className="block cursor-pointer"
+                        >
+                          {content}
+                        </a>
+                      ) : (
+                        content
+                      )}
                     </motion.div>
                   )
                 })}
@@ -216,9 +239,9 @@ export default function Contact() {
             </div>
           </motion.div>
 
-{/*           
+{          
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
@@ -267,13 +290,13 @@ export default function Contact() {
               </div>
             </div>
           </motion.div>
-         */}
+         }
         
         </div>
 
         {/* Trust Badge Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}

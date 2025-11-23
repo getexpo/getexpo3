@@ -39,9 +39,32 @@ const Footer = () => {
                         <div className="col-span-2 sm:col-span-1">
                             <h4 className="text-white font-medium font-raleway text-base sm:text-lg md:text-lg lg:text-xl xl:text-xl mb-3 sm:mb-4 border-b inline-block">Contact Us</h4>
                             <ul className="space-y-2 sm:space-y-3 text-[14px] sm:text-sm md:text-base lg:text-base xl:text-base text-white/80">
-                                <li>Vancouver, BC, Canada</li>
-                                <li>+1 778 712 3301</li>
-                                <li>team@getexposure.ca</li>
+                                <li>
+                                    <a 
+                                        href="https://www.google.com/maps/place/Vancouver,+BC,+Canada"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 min-h-[44px] flex items-center"
+                                    >
+                                        Vancouver, BC, Canada
+                                    </a>
+                                </li>
+                                <li>
+                                    <a 
+                                        href="tel:+17787123301"
+                                        className="hover:text-white transition-colors duration-300 min-h-[44px] flex items-center"
+                                    >
+                                        +1 778 712 3301
+                                    </a>
+                                </li>
+                                <li>
+                                    <a 
+                                        href="mailto:team@getexposure.ca"
+                                        className="hover:text-white transition-colors duration-300 min-h-[44px] flex items-center"
+                                    >
+                                        team@getexposure.ca
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
