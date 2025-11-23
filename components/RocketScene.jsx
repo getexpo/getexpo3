@@ -109,11 +109,15 @@ const RocketScene = () => {
   return (
     <canvas
       ref={canvasRef}
-      className={`${isMobile?"w-[300px]":"w-[30vw]"} h-full !focus:outline-none`}
+      className={`${isMobile?"w-[300px]":"w-[30vw]"} h-full`}
       // height={500}
       style={{
         pointerEvents: "auto",
         touchAction: "none",
+        outline: "none",
+        WebkitTapHighlightColor: "transparent",
+        userSelect: "none",
+        border: "none",
       }}
     ></canvas>
   );
