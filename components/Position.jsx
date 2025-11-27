@@ -117,14 +117,15 @@ const Position = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={contentTransition}
-                                className="flex lg:flex-nowrap flex-wrap flex-col-reverse lg:flex-row-reverse items-center w-full gap-6 md:gap-8 lg:gap-10"
+                                className="relative flex lg:flex-nowrap flex-wrap flex-col-reverse lg:flex-row-reverse items-center w-full gap-6 md:gap-8 lg:gap-10"
                             >
-                                <div className='relative w-full lg:w-1/2 flex items-center justify-center h-[220px] md:h-[280px] lg:h-[320px] xl:h-[22vw]'>
+                                {/* 3D Animation - Background on mobile, side element on desktop */}
+                                <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 flex items-center justify-center h-full lg:h-[320px] xl:h-[22vw] opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto'>
                                     <div className='rotate-45 scale-75 sm:scale-90 md:scale-100'>
                                         <Rocket />
                                     </div>
                                 </div>
-                                <div className='text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6'>
+                                <div className='relative text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6 z-10'>
                                     <div className='space-y-3 md:space-y-4'>
                                         <h1 className='text-[24px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.rocket.title}</h1>
                                         <h3 className='text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.rocket.subtitle}</h3>
@@ -136,7 +137,7 @@ const Position = () => {
                                         href={data.rocket.calendlyLink} 
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px]"
+                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px] pointer-events-auto"
                                     >
                                         <span className="relative z-10 tracking-wide">Get Started</span>
                                         <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -157,12 +158,13 @@ const Position = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={contentTransition}
-                                className="flex justify-center flex-col-reverse lg:flex-row-reverse lg:flex-nowrap flex-wrap items-center w-full gap-6 md:gap-8 lg:gap-10"
+                                className="relative flex justify-center flex-col-reverse lg:flex-row-reverse lg:flex-nowrap flex-wrap items-center w-full gap-6 md:gap-8 lg:gap-10"
                             >
-                                <div className='w-full lg:w-1/2 h-[220px] md:h-[280px] lg:h-[320px] xl:h-[22vw] flex items-center justify-center'>
+                                {/* 3D Animation - Background on mobile, side element on desktop */}
+                                <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto'>
                                     <Station />
                                 </div>
-                                <div className='text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6'>
+                                <div className='relative text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6 z-10'>
                                     <div className='space-y-3 md:space-y-4'>
                                         <h1 className='text-[24px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.station.title}</h1>
                                         <h3 className='text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.station.subtitle}</h3>
@@ -174,7 +176,7 @@ const Position = () => {
                                         href={data.station.calendlyLink} 
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px]"
+                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px] pointer-events-auto"
                                     >
                                         <span className="relative z-10 tracking-wide">Get Started</span>
                                         <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -195,9 +197,9 @@ const Position = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={contentTransition}
-                                className="flex items-start lg:flex-nowrap flex-col-reverse lg:flex-row w-full gap-6 md:gap-8 lg:gap-10"
+                                className="relative flex items-start lg:flex-nowrap flex-col-reverse lg:flex-row w-full gap-6 md:gap-8 lg:gap-10"
                             >
-                                <div className='text-start font-poppins flex flex-wrap items-start justify-center flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6'>
+                                <div className='relative text-start font-poppins flex flex-wrap items-start justify-center flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6 z-10'>
                                     <div className='space-y-3 md:space-y-4'>
                                         <h1 className='text-[24px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.parts.title}</h1>
                                         <h3 className='text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.parts.subtitle}</h3>
@@ -209,7 +211,7 @@ const Position = () => {
                                         href={data.parts.calendlyLink} 
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px]"
+                                        className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px] pointer-events-auto"
                                     >
                                         <span className="relative z-10 tracking-wide">Get Started</span>
                                         <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -217,7 +219,8 @@ const Position = () => {
                                         </span>
                                     </a>
                                 </div>
-                                <div className='w-full lg:w-1/2 h-[220px] md:h-[280px] lg:h-[320px] xl:h-[22vw] flex items-center justify-center'>
+                                {/* 3D Animation - Background on mobile, side element on desktop */}
+                                <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto'>
                                     <PartsScene />
                                 </div>
                             </motion.div>

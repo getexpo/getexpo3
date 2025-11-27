@@ -92,25 +92,33 @@ function HomePageContent() {
               <div className="space-y-5 sm:space-y-6 md:space-y-7 px-2 sm:px-4 md:px-0 max-w-7xl mx-auto mb-8">
                 <div className="space-y-3 sm:space-y-4 md:space-y-5 flex items-center justify-center flex-col">
                   <h1 className="text-[32px] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl max-w-5xl text-center font-poppins leading-[1.2] sm:leading-tight">
-                    {/* First line */}
-                    <span className="block text-white font-semibold">
-                      {content?.heroTitle1}
-                    </span>
-                    
-                    {/* Second line with dynamic words */}
-                    <span className="flex flex-row items-center gap-2 sm:gap-3 md:gap-3 justify-center mt-2 sm:mt-2 md:mt-2">
-                      <span className="font-semibold text-white">{content?.heroTitle2}</span>
-                      <span
-                        className="font-semibold"
-                        style={{
-                          backgroundImage: 'linear-gradient(to right, #6366f1, #ec4899)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                          color: 'transparent',
-                        }}
-                      >
-                        <Type data={typedWords} loop={true} speed={100} delay={100} style="" />
+                    {/* Mobile: 3 lines, Desktop: 2 lines */}
+                    <span className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-2 sm:gap-3">
+                      {/* Line 1 on mobile: "Transform Your" */}
+                      <span className="text-white font-semibold">
+                        Transform Your
+                      </span>
+                      
+                      {/* Line 2 on mobile: "Ad Spend" */}
+                      <span className="text-white font-semibold sm:inline">
+                        Ad Spend
+                      </span>
+                      
+                      {/* Line 3 on mobile: "Into Real [Type]" - wraps together on desktop */}
+                      <span className="flex flex-row items-center gap-2 sm:gap-3 justify-center">
+                        <span className="font-semibold text-white">{content?.heroTitle2}</span>
+                        <span
+                          className="font-semibold"
+                          style={{
+                            backgroundImage: 'linear-gradient(to right, #6366f1, #ec4899)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                            color: 'transparent',
+                          }}
+                        >
+                          <Type data={typedWords} loop={true} speed={100} delay={100} style="" />
+                        </span>
                       </span>
                     </span>
                   </h1>
@@ -143,15 +151,15 @@ function HomePageContent() {
           </div>
 
           <section
-            className="relative bg-black font-poppins w-full min-h-screen xl:h-[70vh] flex items-center justify-center overflow-hidden"
+            className="relative bg-black font-poppins w-full min-h-[50vh] md:min-h-[60vh] xl:h-[50vh] flex items-center justify-center overflow-hidden py-12 md:py-16"
 
           >
             {/* Overlay div for the elegant gradient effect */}
             {/* Using multiple radial/linear gradients to create a subtle, layered color blend */}
-            <div className="absolute w-full h-[200px] bg-gradient-to-b   z-[100] from-black via-black/40 to-transparent top-0 left-0">
+            <div className="absolute w-full h-[150px] bg-gradient-to-b z-[100] from-black via-black/40 to-transparent top-0 left-0">
             </div>
 
-            <div className="absolute w-full h-[200px] bg-gradient-to-t   z-[100] from-black via-black/50 to-transparent bottom-0 left-0">
+            <div className="absolute w-full h-[150px] bg-gradient-to-t z-[100] from-black via-black/50 to-transparent bottom-0 left-0">
             </div>
 
             <div

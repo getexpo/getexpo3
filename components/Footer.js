@@ -17,23 +17,23 @@ const Footer = () => {
                     <div className='grid grid-cols-2 sm:grid-cols-3 w-full lg:w-auto items-start justify-start gap-6 sm:gap-8 lg:gap-12 xl:gap-14'>
 
                         <div>
-                            <h4 className="text-white font-medium font-raleway text-base sm:text-lg md:text-lg lg:text-xl xl:text-xl mb-3 sm:mb-4 border-b inline-block">Services</h4>
+                            <h4 className="text-white font-medium font-raleway text-base sm:text-lg md:text-lg lg:text-xl xl:text-xl mb-3 sm:mb-4 border-b border-white inline-block">Services</h4>
                             <ul className="space-y-2 sm:space-y-3 text-[14px] sm:text-sm md:text-base lg:text-base xl:text-base text-white/80">
-                                <li>Campaign Scaling</li>
-                                <li>Performance Optimization</li>
-                                <li>Campaign Setup</li>
-                                <li>Creative Development</li>
-                                <li>Cross-Channel Integration</li>
+                                <li className="border-b border-white inline-block leading-tight pb-0.5 w-fit">Campaign Scaling</li>
+                                <li className="border-b border-white inline-block leading-tight pb-0.5 w-fit">Performance Optimization</li>
+                                <li className="border-b border-white inline-block leading-tight pb-0.5 w-fit">Campaign Setup</li>
+                                <li className="border-b border-white inline-block leading-tight pb-0.5 w-fit">Creative Development</li>
+                                <li className="border-b border-white inline-block leading-tight pb-0.5 w-fit">Cross-Channel Integration</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 className="text-white font-medium font-raleway text-base sm:text-lg md:text-lg lg:text-xl xl:text-xl mb-3 sm:mb-4 border-b inline-block">Case Studies</h4>
+                            <h4 className="text-white font-medium font-raleway text-base sm:text-lg md:text-lg lg:text-xl xl:text-xl mb-3 sm:mb-4 border-b border-white inline-block">Case Studies</h4>
                             <ul className="items-start flex flex-col gap-2 sm:gap-3 text-[14px] sm:text-sm md:text-base lg:text-base xl:text-base text-white/80">
-                                <li><Link href="/CaseStudy/case1" className='uppercase hover:text-white transition-colors min-h-[44px] flex items-center'>Case Study 1</Link></li>
-                                <li><Link href="/CaseStudy/case2" className='uppercase hover:text-white transition-colors min-h-[44px] flex items-center'>Case Study 2</Link></li>
-                                <li><Link href="/CaseStudy/case3" className='uppercase hover:text-white transition-colors min-h-[44px] flex items-center'>Case Study 3</Link></li>
-                                <li><Link href="/CaseStudy/case4" className='uppercase hover:text-white transition-colors min-h-[44px] flex items-center'>Case Study 4</Link></li>
-                                <li><Link href="/CaseStudy/case5" className='uppercase hover:text-white transition-colors min-h-[44px] flex items-center'>Case Study 5</Link></li>
+                                <li className="w-fit"><Link href="/CaseStudy/case1" className='uppercase hover:text-white transition-colors border-b border-white inline-block leading-tight pb-0.5'>Case Study 1</Link></li>
+                                <li className="w-fit"><Link href="/CaseStudy/case2" className='uppercase hover:text-white transition-colors border-b border-white inline-block leading-tight pb-0.5'>Case Study 2</Link></li>
+                                <li className="w-fit"><Link href="/CaseStudy/case3" className='uppercase hover:text-white transition-colors border-b border-white inline-block leading-tight pb-0.5'>Case Study 3</Link></li>
+                                <li className="w-fit"><Link href="/CaseStudy/case4" className='uppercase hover:text-white transition-colors border-b border-white inline-block leading-tight pb-0.5'>Case Study 4</Link></li>
+                                <li className="w-fit"><Link href="/CaseStudy/case5" className='uppercase hover:text-white transition-colors border-b border-white inline-block leading-tight pb-0.5'>Case Study 5</Link></li>
                             </ul>
                         </div>
                         <div className="col-span-2 sm:col-span-1">
