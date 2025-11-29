@@ -109,9 +109,9 @@ const RocketScene = () => {
   return (
     <canvas
       ref={canvasRef}
-      className={`${isMobile?"w-[300px]":"w-[30vw]"} h-full`}
-      // height={500}
+      className="w-full h-full"
       style={{
+        backgroundColor: "transparent",
         pointerEvents: "auto",
         touchAction: "none",
         outline: "none",

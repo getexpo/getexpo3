@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion"
 // Memoized Rocket component to prevent unnecessary re-renders
 const Rocket = memo(() => {
     return (
-        <div className='relative h-[500px] w-[300px] xl:w-[30vw] xl:h-full' >
+        <div className='relative w-full h-full' >
             <StarfieldCanvas />
             <RocketScene />
         </div>
@@ -70,7 +70,7 @@ const Position = () => {
                 ref={containerRef}
                 className='mx-auto min-h-auto'
             >
-                <div className='w-auto flex items-center justify-center mb-8 md:mb-12 lg:mb-16'>
+                <div className='w-auto flex items-center justify-center mb-3 md:mb-8 lg:mb-10'>
                     <div className="bg-[#1a1a1a]/60 backdrop-blur-md rounded-2xl relative p-1 border border-white/5 shadow-2xl">
                         <nav className='relative flex flex-wrap md:mx-auto items-center justify-center rounded-xl md:rounded-full w-full md:w-fit gap-1'>
                             {tabItems.map(({ id, text }) => (
@@ -107,7 +107,7 @@ const Position = () => {
 
 
                 {/* Content sections - Keep all components mounted */}
-                <div className="relative w-full sm:w-[90%] md:w-[85%] lg:w-[80%] xl:w-[75%] flex flex-col items-center justify-center mx-auto font-poppins py-6 md:py-8 lg:py-[2vw] px-4 sm:px-6 md:px-8">
+                <div className="relative w-full sm:w-[90%] md:w-[85%] lg:w-[80%] xl:w-[75%] flex flex-col items-center justify-center mx-auto font-poppins py-0 px-4 sm:px-6 md:px-8">
                     {/* Rocket Section */}
                     <AnimatePresence mode="wait">
                         {selected === 'rocket' && (
@@ -117,18 +117,18 @@ const Position = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={contentTransition}
-                                className="relative flex lg:flex-nowrap flex-wrap flex-col-reverse lg:flex-row-reverse items-center w-full gap-6 md:gap-8 lg:gap-10"
+                                className="relative flex justify-center lg:flex-nowrap flex-wrap flex-col-reverse lg:flex-row-reverse items-center w-full gap-6 md:gap-8 lg:gap-10 pt-0 min-h-[380px] sm:min-h-[420px] lg:min-h-0"
                             >
                                 {/* 3D Animation - Background on mobile, side element on desktop */}
-                                <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 flex items-center justify-center h-full lg:h-[320px] xl:h-[22vw] opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto'>
-                                    <div className='rotate-45 scale-75 sm:scale-90 md:scale-100'>
+                                <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto overflow-hidden'>
+                                    <div className='rotate-45 scale-[1.5] sm:scale-[1.8] md:scale-[2] lg:scale-100 w-full h-full flex items-center justify-center'>
                                         <Rocket />
                                     </div>
                                 </div>
-                                <div className='relative text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6 z-10'>
-                                    <div className='space-y-3 md:space-y-4'>
-                                        <h1 className='text-[24px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.rocket.title}</h1>
-                                        <h3 className='text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.rocket.subtitle}</h3>
+                                <div className='relative text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-2 md:gap-5 lg:gap-6 z-10'>
+                                    <div className='space-y-1.5 md:space-y-4'>
+                                        <h1 className='text-[20px] sm:text-2xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.rocket.title}</h1>
+                                        <h3 className='text-[13px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.rocket.subtitle}</h3>
                                     </div>
                                     <p className='text-start text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 italic font-roboto xl:text-[1.6vw] font-light leading-relaxed'>{data.rocket.description}</p>
                                     
@@ -158,16 +158,18 @@ const Position = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={contentTransition}
-                                className="relative flex justify-center flex-col-reverse lg:flex-row-reverse lg:flex-nowrap flex-wrap items-center w-full gap-6 md:gap-8 lg:gap-10"
+                                className="relative flex justify-center flex-col-reverse lg:flex-row-reverse lg:flex-nowrap flex-wrap items-center w-full gap-6 md:gap-8 lg:gap-10 pt-0 min-h-[380px] sm:min-h-[420px] lg:min-h-0"
                             >
                                 {/* 3D Animation - Background on mobile, side element on desktop */}
-                                <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto'>
-                                    <Station />
+                                <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto overflow-hidden'>
+                                    <div className='scale-[1.5] sm:scale-[1.8] md:scale-[2] lg:scale-100 w-full h-full flex items-center justify-center'>
+                                        <Station />
+                                    </div>
                                 </div>
-                                <div className='relative text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6 z-10'>
-                                    <div className='space-y-3 md:space-y-4'>
-                                        <h1 className='text-[24px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.station.title}</h1>
-                                        <h3 className='text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.station.subtitle}</h3>
+                                <div className='relative text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-2 md:gap-5 lg:gap-6 z-10'>
+                                    <div className='space-y-1.5 md:space-y-4'>
+                                        <h1 className='text-[20px] sm:text-2xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.station.title}</h1>
+                                        <h3 className='text-[13px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.station.subtitle}</h3>
                                     </div>
                                     <p className='text-start text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 italic font-roboto xl:text-[1.6vw] font-light leading-relaxed'>{data.station.description}</p>
                                     
@@ -197,12 +199,12 @@ const Position = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={contentTransition}
-                                className="relative flex items-start lg:flex-nowrap flex-col-reverse lg:flex-row w-full gap-6 md:gap-8 lg:gap-10"
+                                className="relative flex justify-center lg:flex-nowrap flex-col-reverse lg:flex-row w-full gap-6 md:gap-8 lg:gap-10 pt-0 min-h-[380px] sm:min-h-[420px] lg:min-h-0"
                             >
-                                <div className='relative text-start font-poppins flex flex-wrap items-start justify-center flex-col w-full lg:w-1/2 gap-4 md:gap-5 lg:gap-6 z-10'>
-                                    <div className='space-y-3 md:space-y-4'>
-                                        <h1 className='text-[24px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.parts.title}</h1>
-                                        <h3 className='text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.parts.subtitle}</h3>
+                                <div className='relative text-start font-poppins flex flex-wrap items-center justify-center flex-col w-full lg:w-1/2 gap-2 md:gap-5 lg:gap-6 z-10 lg:items-start'>
+                                    <div className='space-y-1.5 md:space-y-4'>
+                                        <h1 className='text-[20px] sm:text-2xl md:text-4xl lg:text-5xl xl:text-[3.8vw] font-bold uppercase tracking-tight leading-[1.2] sm:leading-tight'>{data.parts.title}</h1>
+                                        <h3 className='text-[13px] sm:text-base md:text-lg lg:text-xl xl:text-[1.4vw] text-gray-400 border-b border-gray-700/50 tracking-wide uppercase pb-2 font-medium'>{data.parts.subtitle}</h3>
                                     </div>
                                     <p className='text-start text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 italic font-roboto xl:text-[1.6vw] font-light leading-relaxed'>{data.parts.description}</p>
                                     
@@ -220,8 +222,10 @@ const Position = () => {
                                     </a>
                                 </div>
                                 {/* 3D Animation - Background on mobile, side element on desktop */}
-                                <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto'>
-                                    <PartsScene />
+                                <div className='absolute lg:relative left-1/2 -translate-x-1/2 lg:left-auto lg:translate-x-0 top-0 lg:top-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto overflow-hidden'>
+                                    <div className='scale-[1.5] sm:scale-[1.8] md:scale-[2] lg:scale-100 w-full h-full flex items-center justify-center'>
+                                        <PartsScene />
+                                    </div>
                                 </div>
                             </motion.div>
                         )}

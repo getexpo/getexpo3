@@ -16,9 +16,12 @@ import "@babylonjs/loaders/glTF";
 
 const PartsScene = () => {
   const canvasRef = useRef(null);
-  const [isMobile, setIsmobile] = useState()
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Set isMobile based on window width after the component mounts
+    setIsMobile(window.innerWidth <= 768);
+
     const canvas = canvasRef.current;
     const engine = new Engine(canvas, true, {
       preserveDrawingBuffer: true,
@@ -33,7 +36,6 @@ const PartsScene = () => {
     camera.attachControl(canvas, true);
     camera.inputs.remove(camera.inputs.attached.mousewheel);
 
-
     new HemisphericLight("light", new Vector3(0, 1, 0), scene);
 
     SceneLoader.ImportMeshAsync("", "/models/", "parts.glb", scene).then((result) => {
@@ -41,34 +43,37 @@ const PartsScene = () => {
       rocketMesh.scaling = new Vector3(0.3, 0.2, 0.3);
       rocketMesh.position = new Vector3(0.1, -0.4, 0);
       camera.setTarget(rocketMesh);
-
     });
 
     engine.runRenderLoop(() => {
       scene.render();
     });
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       engine.resize();
-    });
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
 
     return () => {
+      window.removeEventListener("resize", handleResize);
       engine.dispose();
     };
   }, []);
 
-
   return (
     <canvas
-      className={`${isMobile?"w-[300px]":"w-[30vw]"} h-full !focus:outline-none`}
       ref={canvasRef}
-      // width={ ? 300 : 500}
-      // height={400}
+      className="w-full h-full"
       style={{
         backgroundColor: "transparent",
         pointerEvents: "auto",
         touchAction: "none",
-
+        outline: "none",
+        WebkitTapHighlightColor: "transparent",
+        userSelect: "none",
+        border: "none",
       }}
     />
   );
