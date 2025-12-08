@@ -133,7 +133,7 @@ function HomePageContent() {
                 </p>
 
                 <div className="w-full flex item-center justify-center pt-4 md:pt-5 px-4 pb-4">
-                  <a href={content?.ctaLink} target='_blank' className="group relative inline-flex items-center justify-center gap-3 sm:gap-3 px-8 sm:px-10 py-4 sm:py-4 md:px-12 md:py-5 bg-white hover:bg-gray-200 text-black font-medium text-base sm:text-lg md:text-lg lg:text-xl transition-all duration-300 overflow-hidden min-h-[56px] rounded-md">
+                  <a href='#journey' className="group relative inline-flex items-center justify-center gap-3 sm:gap-3 px-8 sm:px-10 py-4 sm:py-4 md:px-12 md:py-5 bg-white hover:bg-gray-200 text-black font-medium text-base sm:text-lg md:text-lg lg:text-xl transition-all duration-300 overflow-hidden min-h-[56px] rounded-md">
                     <span className="relative z-10">{content?.ctaText}</span>
                     <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">
                       <MoveRight className='w-5 h-5 sm:w-5 sm:h-5' />

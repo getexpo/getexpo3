@@ -5,6 +5,7 @@ import PartsScene from './PartsScene'
 import Station from "./Station"
 import StarfieldCanvas from './StarfieldCanvas'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { motion, AnimatePresence } from "framer-motion"
 
 // Memoized Rocket component to prevent unnecessary re-renders
@@ -28,19 +29,19 @@ const Position = () => {
             title: "Looking to Scale?",
             subtitle: "Ready to scale above $25k-$30k daily",
             description: "If you're ready to scale your campaign above 25k - 30k a day, we can do it by following our proven 6 step scaling strategy.",
-            calendlyLink: "https://calendly.com/rohittangri/just-starting-out-clone"
+            calendlyLink: "/Solution/looking-to-scale"
         },
         station: {
             title: "Looking to Optimize?",
             subtitle: "Already spending but need better performance",
             description: "If you're spending consistently on ads but the performance has dropped, we can help you with our customized 6 step process.",
-            calendlyLink: "https://calendly.com/rohittangri/looking-to-scale-clone"
+            calendlyLink: "/Solution/looking-to-optimize"
         },
         parts: {
             title: "Just Starting?",
             subtitle: "New to advertising and need guidance",
             description: "Ready to launch your first Facebook ad campaign but unsure where to begin? We'll guide you through the entire process step by step.",
-            calendlyLink: "https://calendly.com/rohittangri/just-starting-out"
+            calendlyLink: "/Solution/just-starting"
         },
     }), [])
 
@@ -133,17 +134,15 @@ const Position = () => {
                                     <p className='text-start text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 italic font-roboto xl:text-[1.6vw] font-light leading-relaxed'>{data.rocket.description}</p>
                                     
                                     {/* Button inside text column */}
-                                    <a 
-                                        href={data.rocket.calendlyLink} 
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <Link 
+                                        href={data.rocket.calendlyLink}
                                         className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px] pointer-events-auto"
                                     >
                                         <span className="relative z-10 tracking-wide">Get Started</span>
                                         <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                                             <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 xl:w-[1.6vw] xl:h-[1.6vw]" />
                                         </span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </motion.div>
                         )}
@@ -174,17 +173,15 @@ const Position = () => {
                                     <p className='text-start text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 italic font-roboto xl:text-[1.6vw] font-light leading-relaxed'>{data.station.description}</p>
                                     
                                     {/* Button inside text column */}
-                                    <a 
-                                        href={data.station.calendlyLink} 
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <Link 
+                                        href={data.station.calendlyLink}
                                         className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px] pointer-events-auto"
                                     >
                                         <span className="relative z-10 tracking-wide">Get Started</span>
                                         <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                                             <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 xl:w-[1.6vw] xl:h-[1.6vw]" />
                                         </span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </motion.div>
                         )}
@@ -209,17 +206,15 @@ const Position = () => {
                                     <p className='text-start text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 italic font-roboto xl:text-[1.6vw] font-light leading-relaxed'>{data.parts.description}</p>
                                     
                                     {/* Button inside text column */}
-                                    <a 
-                                        href={data.parts.calendlyLink} 
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <Link 
+                                        href={data.parts.calendlyLink}
                                         className="group relative w-full inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-8 py-4 md:py-5 xl:py-[1.3vw] bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold text-base md:text-lg lg:text-xl xl:text-[1.4vw] transition-all duration-200 overflow-hidden shadow-2xl hover:shadow-purple-500/50 rounded-xl mt-4 hover:scale-[1.02] active:scale-[0.98] min-h-[56px] pointer-events-auto"
                                     >
                                         <span className="relative z-10 tracking-wide">Get Started</span>
                                         <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                                             <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 xl:w-[1.6vw] xl:h-[1.6vw]" />
                                         </span>
-                                    </a>
+                                    </Link>
                                 </div>
                                 {/* 3D Animation - Background on mobile, side element on desktop */}
                                 <div className='absolute lg:relative left-1/2 -translate-x-1/2 lg:left-auto lg:translate-x-0 top-0 lg:top-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto overflow-hidden'>
