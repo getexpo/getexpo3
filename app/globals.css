@@ -13,6 +13,8 @@
   --font-poppins: var(--font-poppins);
   --font-raleway: var(--font-raleway);
   --font-roboto: var(--font-roboto);
+  
+  --breakpoint-xs: 375px;
 }
 
 @utility font-poppins {

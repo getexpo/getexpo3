@@ -91,22 +91,22 @@ function HomePageContent() {
             <div className="mx-auto lg:px-10 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:px-0 w-full px-4 sm:px-6 flex items-center justify-center relative z-[100] pb-56 sm:pb-60 md:pb-64 lg:pb-72 xl:pb-80">
               <div className="space-y-5 sm:space-y-6 md:space-y-7 px-2 sm:px-4 md:px-0 max-w-7xl mx-auto mb-8">
                 <div className="space-y-3 sm:space-y-4 md:space-y-5 flex items-center justify-center flex-col">
-                  <h1 className="text-[32px] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl max-w-5xl text-center font-poppins leading-[1.2] sm:leading-tight">
-                    {/* Mobile: 3 lines, Desktop: 2 lines */}
-                    <span className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-2 sm:gap-3">
-                      {/* Line 1 on mobile: "Transform Your" */}
-                      <span className="text-white font-semibold">
+                  <h1 className="text-[20px] xs:text-[24px] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl max-w-5xl text-center font-poppins leading-[1.2] sm:leading-tight">
+                    {/* Single line on all mobile screens */}
+                    <span className="flex flex-row flex-wrap items-center justify-center gap-1 xs:gap-1.5 sm:gap-3">
+                      {/* "Transform Your" */}
+                      <span className="text-white font-semibold whitespace-nowrap">
                         Transform Your
                       </span>
                       
-                      {/* Line 2 on mobile: "Ad Spend" */}
-                      <span className="text-white font-semibold sm:inline">
+                      {/* "Ad Spend" */}
+                      <span className="text-white font-semibold whitespace-nowrap">
                         Ad Spend
                       </span>
                       
-                      {/* Line 3 on mobile: "Into Real [Type]" - wraps together on desktop */}
-                      <span className="flex flex-row items-center gap-2 sm:gap-3 justify-center">
-                        <span className="font-semibold text-white">{content?.heroTitle2}</span>
+                      {/* "Into Real [Type]" */}
+                      <span className="flex flex-row items-center gap-1 xs:gap-1.5 sm:gap-3 justify-center whitespace-nowrap">
+                        <span className="font-semibold text-white">Into Real</span>
                         <span
                           className="font-semibold"
                           style={{
@@ -125,17 +125,17 @@ function HomePageContent() {
                 </div>
 
                 {/* Sub-headline with improved spacing */}
-                <h2 className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl max-w-4xl mx-auto font-poppins text-center text-white/95 font-normal leading-relaxed px-2">
+                <h2 className="text-[14px] xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl max-w-4xl mx-auto font-poppins text-center text-white/95 font-normal leading-relaxed px-2">
                   {content?.subHeadline}
                 </h2>
-                <p className="text-[15px] sm:text-base md:text-lg lg:text-lg xl:text-xl font-normal tracking-wide leading-relaxed text-center w-[95%] md:w-[85%] lg:w-[70%] max-w-3xl mx-auto text-white/75 font-roboto px-2">
+                <p className="text-[13px] xs:text-[15px] sm:text-base md:text-lg lg:text-lg xl:text-xl font-normal tracking-wide leading-relaxed text-center w-[95%] md:w-[85%] lg:w-[70%] max-w-3xl mx-auto text-white/75 font-roboto px-2">
                   {content?.description}
                 </p>
 
                 <div className="w-full flex item-center justify-center pt-4 md:pt-5 px-4 pb-4">
-                  <a href='#journey' className="group relative inline-flex items-center justify-center gap-3 sm:gap-3 px-8 sm:px-10 py-4 sm:py-4 md:px-12 md:py-5 bg-white hover:bg-gray-200 text-black font-medium text-base sm:text-lg md:text-lg lg:text-xl transition-all duration-300 overflow-hidden min-h-[56px] rounded-md">
-                    <span className="relative z-10">{content?.ctaText}</span>
-                    <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">
+                  <a href='#journey' className="group relative inline-flex items-center justify-center gap-3 sm:gap-3 px-8 sm:px-10 py-4 sm:py-4 md:px-12 md:py-5 bg-white hover:bg-gray-200 text-black font-medium text-base sm:text-lg md:text-lg lg:text-xl transition-all duration-300 min-h-[56px] rounded-md">
+                    <span className="relative z-10 whitespace-nowrap">{content?.ctaText}</span>
+                    <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0">
                       <MoveRight className='w-5 h-5 sm:w-5 sm:h-5' />
                     </span>
                   </a>
