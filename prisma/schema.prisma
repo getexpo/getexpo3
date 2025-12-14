@@ -177,6 +177,7 @@ model Settings {
   phone              String   @default("+1 778 712 3301")
   location           String   @default("Vancouver, BC, Canada")
   businessHours      String   @default("Mon-Fri: 9AM-6PM PST")
+  logoPath           String   @default("/logo.png")
   googleAnalyticsId  String?
   facebookPixelId    String?
   createdAt          DateTime @default(now())

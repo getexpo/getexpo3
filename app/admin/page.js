@@ -74,6 +74,7 @@ export default function AdminDashboard() {
     { name: 'Manage Case Studies', href: '/admin/case-studies', description: 'Add, edit, or remove case studies' },
     { name: 'Update Solutions', href: '/admin/solutions', description: 'Edit solution pages and steps' },
     { name: 'Contact Settings', href: '/admin/contact', description: 'Manage contact information' },
+    { name: 'Logo Management', href: '/admin/logo', description: 'Upload and manage site logo' },
     { name: 'Media Library', href: '/admin/media', description: 'Upload and manage images' },
     { name: 'Site Settings', href: '/admin/settings', description: 'Configure site-wide settings' },
   ]
