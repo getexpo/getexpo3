@@ -18,8 +18,8 @@ function HomePageContent() {
       if (!res.ok) throw new Error('Failed to fetch')
       return res.json()
     },
-    // Use default values while loading
-    placeholderData: {
+    // Use initial data as fallback when database is unavailable
+    initialData: {
       heroTitle1: 'Transform Your Ad Spend',
       heroTitle2: 'Into Real',
       typedWords: 'Customers,Revenue,Profit',
@@ -35,6 +35,8 @@ function HomePageContent() {
       journeyTitle2: 'Advertising Journey',
       journeyDesc: 'We start by pinpointing exactly where you are in your advertising journey. Every business is unique, and your challenges require tailored solutions.',
     },
+    retry: false, // Don't retry when database is down
+    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
   })
 
   // Fetch logos from API
@@ -46,7 +48,7 @@ function HomePageContent() {
       return res.json()
     },
     select: (data) => data.map(logo => logo.path),
-    placeholderData: [
+    initialData: [
       {path: '/brands/1.png'},
       {path: '/brands/2.png'},
       {path: '/brands/4.png'},
@@ -55,6 +57,8 @@ function HomePageContent() {
       {path: '/brands/7.png'},
       {path: '/brands/8.png'},
     ],
+    retry: false, // Don't retry when database is down
+    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
   })
 
   const typedWords = content?.typedWords?.split(',') || ['Customers', 'Revenue', 'Profit']
@@ -88,33 +92,34 @@ function HomePageContent() {
               }}
             ></div>
 
-            <div className="mx-auto lg:px-10 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:px-0 w-full px-4 sm:px-6 flex items-center justify-center relative z-[100] pb-56 sm:pb-60 md:pb-64 lg:pb-72 xl:pb-80">
+            <div className="mx-auto lg:px-10 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:px-0 w-full px-4 sm:px-6 flex items-center justify-center relative z-[200] pb-56 sm:pb-60 md:pb-64 lg:pb-72 xl:pb-80">
               <div className="space-y-5 sm:space-y-6 md:space-y-7 px-2 sm:px-4 md:px-0 max-w-7xl mx-auto mb-8">
                 <div className="space-y-3 sm:space-y-4 md:space-y-5 flex items-center justify-center flex-col">
-                  <h1 className="text-[20px] xs:text-[24px] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl max-w-5xl text-center font-poppins leading-[1.2] sm:leading-tight">
-                    {/* Single line on all mobile screens */}
-                    <span className="flex flex-row flex-wrap items-center justify-center gap-1 xs:gap-1.5 sm:gap-3">
-                      {/* "Transform Your" */}
+                  <h1 className="text-[20px] xs:text-[24px] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl max-w-5xl text-center font-poppins leading-[1.3] sm:leading-tight">
+                    {/* Mobile: 3 lines, Desktop: flexible wrapping */}
+                    <span className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-1 xs:gap-1.5 sm:gap-3">
+                      {/* Line 1 on mobile: "Transform Your" */}
                       <span className="text-white font-semibold whitespace-nowrap">
                         Transform Your
                       </span>
                       
-                      {/* "Ad Spend" */}
+                      {/* Line 2 on mobile: "Ad Spend" */}
                       <span className="text-white font-semibold whitespace-nowrap">
                         Ad Spend
                       </span>
                       
-                      {/* "Into Real [Type]" */}
+                      {/* Line 3 on mobile: "Into Real [Type]" - nowrap prevents breaking */}
                       <span className="flex flex-row items-center gap-1 xs:gap-1.5 sm:gap-3 justify-center whitespace-nowrap">
                         <span className="font-semibold text-white">Into Real</span>
                         <span
-                          className="font-semibold"
+                          className="font-semibold inline-block"
                           style={{
                             backgroundImage: 'linear-gradient(to right, #6366f1, #ec4899)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             backgroundClip: 'text',
                             color: 'transparent',
+                            minWidth: '150px',
                           }}
                         >
                           <Type data={typedWords} loop={true} speed={100} delay={100} style="" />
@@ -125,17 +130,17 @@ function HomePageContent() {
                 </div>
 
                 {/* Sub-headline with improved spacing */}
-                <h2 className="text-[14px] xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl max-w-4xl mx-auto font-poppins text-center text-white/95 font-normal leading-relaxed px-2">
+                <h2 className="text-[14px] xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl max-w-4xl mx-auto font-poppins text-center font-normal leading-relaxed px-2 relative z-[300]" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
                   {content?.subHeadline}
                 </h2>
-                <p className="text-[13px] xs:text-[15px] sm:text-base md:text-lg lg:text-lg xl:text-xl font-normal tracking-wide leading-relaxed text-center w-[95%] md:w-[85%] lg:w-[70%] max-w-3xl mx-auto text-white/75 font-roboto px-2">
+                <p className="text-[13px] xs:text-[15px] sm:text-base md:text-lg lg:text-lg xl:text-xl font-normal tracking-wide leading-relaxed text-center w-[95%] md:w-[85%] lg:w-[70%] max-w-3xl mx-auto font-roboto px-2 relative z-[300]" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>
                   {content?.description}
                 </p>
 
-                <div className="w-full flex item-center justify-center pt-4 md:pt-5 px-4 pb-4">
-                  <a href='#journey' className="group relative inline-flex items-center justify-center gap-3 sm:gap-3 px-8 sm:px-10 py-4 sm:py-4 md:px-12 md:py-5 bg-white hover:bg-gray-200 text-black font-medium text-base sm:text-lg md:text-lg lg:text-xl transition-all duration-300 min-h-[56px] rounded-md">
-                    <span className="relative z-10 whitespace-nowrap">{content?.ctaText}</span>
-                    <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0">
+                <div className="w-full flex item-center justify-center pt-4 md:pt-5 px-4 pb-4 relative z-[300]">
+                  <a href='#journey' className="group relative inline-flex items-center justify-center gap-3 sm:gap-3 px-8 sm:px-10 py-4 sm:py-4 md:px-12 md:py-5 bg-white hover:bg-gray-200 font-medium text-base sm:text-lg md:text-lg lg:text-xl transition-all duration-300 min-h-[56px] rounded-md" style={{ color: '#000000' }}>
+                    <span className="relative z-10 whitespace-nowrap" style={{ color: '#000000' }}>{content?.ctaText}</span>
+                    <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0" style={{ color: '#000000' }}>
                       <MoveRight className='w-5 h-5 sm:w-5 sm:h-5' />
                     </span>
                   </a>
