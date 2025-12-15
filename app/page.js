@@ -97,7 +97,7 @@ function HomePageContent() {
                 <div className="space-y-3 sm:space-y-4 md:space-y-5 flex items-center justify-center flex-col">
                   <h1 className="text-[20px] xs:text-[24px] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl max-w-5xl text-center font-poppins leading-[1.3] sm:leading-tight">
                     {/* Mobile: 3 lines, Desktop: flexible wrapping */}
-                    <span className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-1 xs:gap-1.5 sm:gap-3">
+                      <span className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-2 xs:gap-2 sm:gap-3">
                       {/* Line 1 on mobile: "Transform Your" */}
                       <span className="text-white font-semibold whitespace-nowrap">
                         Transform Your
@@ -109,10 +109,10 @@ function HomePageContent() {
                       </span>
                       
                       {/* Line 3 on mobile: "Into Real [Type]" - nowrap prevents breaking */}
-                      <span className="flex flex-row items-center gap-1 xs:gap-1.5 sm:gap-3 justify-center whitespace-nowrap">
+                      <span className="flex flex-row items-center gap-2 xs:gap-2 sm:gap-3 justify-center whitespace-nowrap">
                         <span className="font-semibold text-white">Into Real</span>
                         <span
-                          className="font-semibold inline-block"
+                          className="font-semibold inline-block text-left"
                           style={{
                             backgroundImage: 'linear-gradient(to right, #6366f1, #ec4899)',
                             WebkitBackgroundClip: 'text',
