@@ -329,7 +329,7 @@ const Page = () => {
                     </div>
 
                 </div>
-                <div className="w-full flex justify-center px-4">
+                <div className="w-full flex justify-center px-4 relative z-[200]">
                     <a 
                         href={action} 
                         target='_blank' 
