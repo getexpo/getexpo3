@@ -22,6 +22,36 @@ Rocket.displayName = 'Rocket'
 const Position = () => {
     const containerRef = useRef(null)
     const [selected, setSelected] = useState("rocket")
+    const [isVisible, setIsVisible] = useState(false)
+    const [hasLoaded, setHasLoaded] = useState(false)
+
+    // Intersection Observer to load animations only when visible
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !hasLoaded) {
+                        setIsVisible(true)
+                        setHasLoaded(true)
+                    }
+                })
+            },
+            {
+                rootMargin: '100px', // Start loading 100px before section is visible
+                threshold: 0.1
+            }
+        )
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current)
+        }
+
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current)
+            }
+        }
+    }, [hasLoaded])
 
     // Memoize static data to prevent re-creation
     const data = useMemo(() => ({
@@ -123,7 +153,7 @@ const Position = () => {
                                 {/* 3D Animation - Background on mobile, side element on desktop */}
                                 <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto overflow-hidden'>
                                     <div className='rotate-45 scale-[1.5] sm:scale-[1.8] md:scale-[2] lg:scale-100 w-full h-full flex items-center justify-center'>
-                                        <Rocket />
+                                        {isVisible && <Rocket />}
                                     </div>
                                 </div>
                                 <div className='relative text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-2 md:gap-5 lg:gap-6 z-10'>
@@ -162,7 +192,7 @@ const Position = () => {
                                 {/* 3D Animation - Background on mobile, side element on desktop */}
                                 <div className='absolute lg:relative inset-0 lg:inset-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto overflow-hidden'>
                                     <div className='scale-[1.5] sm:scale-[1.8] md:scale-[2] lg:scale-100 w-full h-full flex items-center justify-center'>
-                                        <Station />
+                                        {isVisible && <Station />}
                                     </div>
                                 </div>
                                 <div className='relative text-start flex font-poppins items-start flex-col w-full lg:w-1/2 gap-2 md:gap-5 lg:gap-6 z-10'>
@@ -219,7 +249,7 @@ const Position = () => {
                                 {/* 3D Animation - Background on mobile, side element on desktop */}
                                 <div className='absolute lg:relative left-1/2 -translate-x-1/2 lg:left-auto lg:translate-x-0 top-0 lg:top-auto w-full lg:w-1/2 h-full lg:h-[320px] xl:h-[22vw] flex items-center justify-center opacity-20 lg:opacity-100 pointer-events-none lg:pointer-events-auto z-0 lg:z-auto overflow-hidden'>
                                     <div className='scale-[1.5] sm:scale-[1.8] md:scale-[2] lg:scale-100 w-full h-full flex items-center justify-center'>
-                                        <PartsScene />
+                                        {isVisible && <PartsScene />}
                                     </div>
                                 </div>
                             </motion.div>

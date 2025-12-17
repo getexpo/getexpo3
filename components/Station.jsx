@@ -1,81 +1,137 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  Engine,
-  Scene,
-  ArcRotateCamera,
-  Vector3,
-  HemisphericLight,
-  SceneLoader,
-  Color4,
-  ParticleSystem,
-  Texture,
-} from "@babylonjs/core";
-import "@babylonjs/loaders/glTF";
+
 
 const Station = () => {
-  const [isMobile, setIsMobile] = useState(false);
   const canvasRef = useRef(null);
+  const engineRef = useRef(null);
+  const sceneRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    // Set isMobile based on window width after the component mounts
     setIsMobile(window.innerWidth <= 768);
 
-    const canvas = canvasRef.current;
-    const engine = new Engine(canvas, true, {
-      preserveDrawingBuffer: true,
-      stencil: true,
-      alpha: true,
-    });
+    let mounted = true;
 
-    const scene = new Scene(engine);
-    scene.clearColor = new Color4(0, 0, 0, 0); // transparent
+    const loadBabylon = async () => {
+      try {
+        const [
+          { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, SceneLoader, Color4 }
+        ] = await Promise.all([
+          import("@babylonjs/core"),
+          import("@babylonjs/loaders/glTF")
+        ]);
 
-    const camera = new ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2, 3, new Vector3(0, 0, 0), scene);
-    camera.attachControl(canvas, false);
-    camera.inputs.remove(camera.inputs.attached.mousewheel);
+        if (!mounted) return;
 
-    new HemisphericLight("light", new Vector3(0, 1, 0), scene);
+        const canvas = canvasRef.current;
+        if (!canvas) return;
 
-    SceneLoader.ImportMeshAsync("", "/models/", "station2.glb", scene).then((result) => {
-      const rocketMesh = result.meshes[0];
-      rocketMesh.scaling = new Vector3(0.35, 0.35, 0.35);
-      rocketMesh.position = new Vector3(0, 0, 0);
-      camera.setTarget(rocketMesh);
-    });
+        const engine = new Engine(canvas, true, {
+          preserveDrawingBuffer: true,
+          stencil: true,
+          alpha: true,
+          powerPreference: "high-performance",
+          doNotHandleContextLost: true,
+        });
+        engineRef.current = engine;
 
-    engine.runRenderLoop(() => {
-      scene.render();
-    });
+        const scene = new Scene(engine);
+        sceneRef.current = scene;
+        scene.clearColor = new Color4(0, 0, 0, 0);
 
-    const handleResize = () => {
-      engine.resize();
-      setIsMobile(window.innerWidth <= 768);
+        const camera = new ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2, 3, new Vector3(0, 0, 0), scene);
+        camera.attachControl(canvas, false);
+        camera.inputs.remove(camera.inputs.attached.mousewheel);
+        camera.lowerRadiusLimit = 2;
+        camera.upperRadiusLimit = 5;
+
+        new HemisphericLight("light", new Vector3(0, 1, 0), scene);
+
+        try {
+          const result = await SceneLoader.ImportMeshAsync("", "/models/", "station2.glb", scene);
+          
+          if (!mounted) return;
+
+          const stationMesh = result.meshes[0];
+          stationMesh.scaling = new Vector3(0.35, 0.35, 0.35);
+          stationMesh.position = new Vector3(0, 0, 0);
+          camera.setTarget(stationMesh);
+
+          setIsLoading(false);
+        } catch (error) {
+          console.error("Failed to load station model:", error);
+          setLoadError(true);
+          setIsLoading(false);
+        }
+
+        engine.runRenderLoop(() => {
+          if (sceneRef.current) {
+            sceneRef.current.render();
+          }
+        });
+
+        const handleResize = () => {
+          engine.resize();
+          setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      } catch (error) {
+        console.error("Failed to load Babylon.js:", error);
+        setLoadError(true);
+        setIsLoading(false);
+      }
     };
 
-    window.addEventListener("resize", handleResize);
+    loadBabylon();
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      engine.dispose();
+      mounted = false;
+      if (engineRef.current) {
+        engineRef.current.dispose();
+        engineRef.current = null;
+      }
+      if (sceneRef.current) {
+        sceneRef.current.dispose();
+        sceneRef.current = null;
+      }
     };
   }, []);
 
+  if (loadError) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="text-center text-gray-400">
+          <p className="text-sm">Unable to load 3D scene</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <canvas
-      ref={canvasRef}
-      className="w-full h-full"
-      style={{
-        backgroundColor: "transparent",
-        pointerEvents: "auto",
-        touchAction: "none",
-        outline: "none",
-        WebkitTapHighlightColor: "transparent",
-        userSelect: "none",
-        border: "none",
-      }}
-    />
+    <div className="relative w-full h-full">
+      <canvas
+        ref={canvasRef}
+        className={`w-full h-full transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+        style={{
+          backgroundColor: "transparent",
+          pointerEvents: "auto",
+          touchAction: "none",
+          outline: "none",
+          WebkitTapHighlightColor: "transparent",
+          userSelect: "none",
+          border: "none",
+        }}
+      />
+    </div>
   );
 };
 
