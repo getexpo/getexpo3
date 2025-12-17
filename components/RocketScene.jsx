@@ -33,18 +33,23 @@ const RocketScene = () => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const engine = new Engine(canvas, true, {
-          preserveDrawingBuffer: true,
-          stencil: true,
+        const engine = new Engine(canvas, false, { // Disable anti-aliasing for performance
+          preserveDrawingBuffer: false, // Disable for better performance
+          stencil: false, // Disable stencil buffer
           alpha: true,
           powerPreference: "high-performance",
           doNotHandleContextLost: true,
+          antialias: false, // Explicitly disable anti-aliasing
         });
         engineRef.current = engine;
 
         const scene = new Scene(engine);
         sceneRef.current = scene;
         scene.clearColor = new Color4(0, 0, 0, 0);
+        
+        // Optimize scene for performance
+        scene.autoClear = false;
+        scene.autoClearDepthAndStencil = false;
 
         const camera = new ArcRotateCamera("camera", Math.PI / 0.3, Math.PI / 2.5, 3, new Vector3(0, 0, 0), scene);
         camera.lowerRadiusLimit = 2;
@@ -63,8 +68,8 @@ const RocketScene = () => {
           rocketMesh.position = new Vector3(0, -1.5, 0);
           camera.setTarget(rocketMesh);
 
-          // Fire particles
-          const fire = new ParticleSystem("fire", 2000, scene);
+          // Fire particles - Optimized for performance
+          const fire = new ParticleSystem("fire", 800, scene); // Reduced from 2000
           fire.particleTexture = new Texture("/flame.png", scene);
           fire.emitter = new Vector3(0, -1.5, 0);
           fire.minEmitBox = new Vector3(-0.05, 0, -0.05);
@@ -75,7 +80,7 @@ const RocketScene = () => {
           fire.maxSize = 0.3;
           fire.minLifeTime = 0.2;
           fire.maxLifeTime = 0.4;
-          fire.emitRate = 500;
+          fire.emitRate = 300; // Reduced from 500
           fire.direction1 = new Vector3(0, -1, 0);
           fire.direction2 = new Vector3(0, -1.2, 0);
           fire.gravity = new Vector3(0, -5, 0);
@@ -109,9 +114,18 @@ const RocketScene = () => {
           setIsLoading(false);
         }
 
+        // Limit FPS to 30 for better performance
+        let lastRender = 0;
+        const targetFPS = 30;
+        const frameTime = 1000 / targetFPS;
+        
         engine.runRenderLoop(() => {
-          if (sceneRef.current) {
-            sceneRef.current.render();
+          const now = performance.now();
+          if (now - lastRender >= frameTime) {
+            if (sceneRef.current) {
+              sceneRef.current.render();
+            }
+            lastRender = now;
           }
         });
 

@@ -30,18 +30,23 @@ const Station = () => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const engine = new Engine(canvas, true, {
-          preserveDrawingBuffer: true,
-          stencil: true,
+        const engine = new Engine(canvas, false, { // Disable anti-aliasing
+          preserveDrawingBuffer: false,
+          stencil: false,
           alpha: true,
           powerPreference: "high-performance",
           doNotHandleContextLost: true,
+          antialias: false,
         });
         engineRef.current = engine;
 
         const scene = new Scene(engine);
         sceneRef.current = scene;
         scene.clearColor = new Color4(0, 0, 0, 0);
+        
+        // Optimize scene for performance
+        scene.autoClear = false;
+        scene.autoClearDepthAndStencil = false;
 
         const camera = new ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2, 3, new Vector3(0, 0, 0), scene);
         camera.attachControl(canvas, false);
@@ -68,9 +73,18 @@ const Station = () => {
           setIsLoading(false);
         }
 
+        // Limit FPS to 30 for better performance
+        let lastRender = 0;
+        const targetFPS = 30;
+        const frameTime = 1000 / targetFPS;
+        
         engine.runRenderLoop(() => {
-          if (sceneRef.current) {
-            sceneRef.current.render();
+          const now = performance.now();
+          if (now - lastRender >= frameTime) {
+            if (sceneRef.current) {
+              sceneRef.current.render();
+            }
+            lastRender = now;
           }
         });
 
