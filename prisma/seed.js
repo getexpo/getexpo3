@@ -333,7 +333,7 @@ async function main() {
       type: 'info',
       icon: 'Mail',
       title: 'Email',
-      details: 'team@getexposure.ca',
+      details: 'admin@getexposure.ca',
       order: 3,
     },
     {
@@ -477,7 +477,7 @@ async function main() {
       siteName: 'Get Exposure',
       siteDescription: 'Transform Your Ad Spend Into Real Results',
       defaultCalendlyLink: 'https://calendly.com/rohittangri/just-starting-out',
-      email: 'team@getexposure.ca',
+      email: 'admin@getexposure.ca',
       phone: '+1 778 712 3301',
       location: 'Vancouver, BC, Canada',
       businessHours: 'Mon-Fri: 9AM-6PM PST',

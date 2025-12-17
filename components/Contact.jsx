@@ -56,8 +56,8 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      details: "team@getexposure.ca",
-      href: "mailto:team@getexposure.ca",
+      details: "admin@getexposure.ca",
+      href: "mailto:admin@getexposure.ca",
       linkType: "mailto",
     },
     {

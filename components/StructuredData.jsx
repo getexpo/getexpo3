@@ -24,7 +24,7 @@ export function OrganizationSchema() {
       '@type': 'ContactPoint',
       telephone: '+1-778-712-3301',
       contactType: 'customer service',
-      email: 'team@getexposure.ca',
+      email: 'admin@getexposure.ca',
       areaServed: 'US',
       availableLanguage: 'en',
     },

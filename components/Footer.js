@@ -59,10 +59,10 @@ const Footer = () => {
                                 </li>
                                 <li>
                                     <a 
-                                        href="mailto:team@getexposure.ca"
+                                        href="mailto:admin@getexposure.ca"
                                         className="hover:text-white transition-colors duration-300 min-h-[44px] flex items-center"
                                     >
-                                        team@getexposure.ca
+                                        admin@getexposure.ca
                                     </a>
                                 </li>
                             </ul>

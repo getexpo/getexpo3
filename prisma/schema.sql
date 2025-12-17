@@ -186,7 +186,7 @@ CREATE TABLE "Settings" (
     "siteName" TEXT NOT NULL DEFAULT 'Get Exposure',
     "siteDescription" TEXT NOT NULL DEFAULT 'Transform Your Ad Spend Into Real Results',
     "defaultCalendlyLink" TEXT NOT NULL DEFAULT 'https://calendly.com/rohittangri/just-starting-out',
-    "email" TEXT NOT NULL DEFAULT 'team@getexposure.ca',
+    "email" TEXT NOT NULL DEFAULT 'admin@getexposure.ca',
     "phone" TEXT NOT NULL DEFAULT '+1 778 712 3301',
     "location" TEXT NOT NULL DEFAULT 'Vancouver, BC, Canada',
     "businessHours" TEXT NOT NULL DEFAULT 'Mon-Fri: 9AM-6PM PST',
