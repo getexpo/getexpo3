@@ -108,18 +108,17 @@ function HomePageContent() {
                         Ad Spend
                       </span>
                       
-                      {/* Line 3 on mobile: "Into Real [Type]" - fixed width container for proper centering */}
-                      <span className="flex flex-row items-center justify-center whitespace-nowrap w-[280px] sm:w-[320px] mx-auto">
-                        <span className="font-semibold text-white mr-1">Into Real</span>
+                      {/* Line 3 on mobile: "Into Real [Type]" - block display with text-align center */}
+                      <span className="w-full sm:w-auto block sm:inline-block text-center whitespace-nowrap">
+                        <span className="font-semibold text-white inline-block mr-2">Into Real</span>
                         <span
-                          className="font-semibold inline-block text-center"
+                          className="font-semibold inline-block"
                           style={{
                             backgroundImage: 'linear-gradient(to right, #6366f1, #ec4899)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             backgroundClip: 'text',
                             color: 'transparent',
-                            minWidth: '100px',
                           }}
                         >
                           <Type data={typedWords} loop={true} speed={100} delay={100} style="" />
